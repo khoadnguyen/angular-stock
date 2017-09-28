@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { ROUTING } from "./app.routing";
 import { HomeComponent } from "./home/home.component";
 import { AboutComponent } from "./about/about.component";
+import { StockService } from "./stock.service";
+import { NewsService } from "./news.service";
 
 @NgModule({
     declarations: [
@@ -23,7 +25,7 @@ import { AboutComponent } from "./about/about.component";
         ClarityModule,
         ROUTING
     ],
-    providers: [],
+    providers: [ StockService, NewsService ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

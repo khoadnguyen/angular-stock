@@ -108,14 +108,6 @@ For documentation on the Clarity Design System, including a list of components a
 ```
 
 
-## Contributing
-
-The Clarity project team welcomes contributions from the community. For more detailed information, see [CONTRIBUTING.md](CONTRIBUTING.md).
-
 ## License
 
 The clarity-seed project is licensed under the MIT license.
-
-## Feedback
-
-If you find a bug or want to request a new feature, please open a [GitHub issue](https://github.com/vmware/clarity-seed/issues).
