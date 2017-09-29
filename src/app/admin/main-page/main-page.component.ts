@@ -1,15 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {StockService} from "../../stock.service";
 
 @Component({
-  selector: 'app-main-page',
-  templateUrl: './main-page.component.html',
-  styleUrls: ['./main-page.component.css']
+	selector: 'app-main-page',
+	templateUrl: './main-page.component.html',
+	styleUrls: ['./main-page.component.css']
 })
 export class MainPageComponent implements OnInit {
 
-  constructor() { }
+	constructor(private stock$: StockService) {
+		this.getData();
+	}
 
-  ngOnInit() {
-  }
+	ngOnInit() {
+	}
 
+	getData(): void {
+		this.stock$.getData().subscribe(res => {
+			console.log(res);
+		});
+	}
 }

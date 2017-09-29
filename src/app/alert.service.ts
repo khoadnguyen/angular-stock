@@ -1,61 +1,62 @@
-import { Injectable } from '@angular/core';
-
-import { default as swal, SweetAlertType, SweetAlertOptions } from 'sweetalert2';
+import {Injectable} from '@angular/core';
+import {default as swal, SweetAlertType, SweetAlertOptions} from 'sweetalert2';
 
 @Injectable()
 export class AlertService {
 
-  constructor() { }
+	constructor() {
+	}
 
-  error(text = 'เกิดข้อผิดพลาด') {
+	error(text = 'Error') {
 
-    const option: SweetAlertOptions = {
-      title: 'เกิดข้อผิดพลาด',
-      text: text,
-      type: 'error',
-      confirmButtonText: 'ตกลง'
-    };
-    swal(option);
+		const option: SweetAlertOptions = {
+			title: 'Error',
+			text: text,
+			type: 'error',
+			confirmButtonText: 'Ok'
+		};
+		swal(option);
 
-  }
+	}
 
-  success(title = 'ดำเนินการเสร็จเรียบร้อย', text = '') {
+	success(title = 'Success', text = '') {
 
-    const option: SweetAlertOptions = {
-      title: title,
-      text: text,
-      timer: 3000,
-      type: 'success',
-      confirmButtonText: 'ตกลง'
-    };
-    swal(option)
-      .then(() => { });
+		const option: SweetAlertOptions = {
+			title: title,
+			text: text,
+			timer: 3000,
+			type: 'success',
+			confirmButtonText: 'Ok'
+		};
+		swal(option)
+			.then(() => {
+			});
 
-  }
+	}
 
-  serverError() {
+	serverError() {
 
-    const option: SweetAlertOptions = {
-      title: 'เกิดข้อผิดพลาด',
-      text: 'เกิดข้อผิดพลาดในการเชื่อมต่อกับเซิร์ฟเวอร์',
-      type: 'error',
-      confirmButtonText: 'ตกลง'
-    };
-    swal(option);
+		const option: SweetAlertOptions = {
+			title: 'Error',
+			text: 'Server Error',
+			type: 'error',
+			confirmButtonText: 'Ok'
+		};
+		swal(option);
 
-  }
+	}
 
-  confirm(text = 'คุณต้องการดำเนินการนี้ ใช่หรือไม่?', ) {
-    const option: SweetAlertOptions = {
-      title: 'Are you sure?',
-      text: text,
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'ใช่, ดำเนินการ!',
-      cancelButtonText: 'ยกเลิก'
-    };
-     return swal(option);
-  }
+	confirm(text = 'Are you sure?',) {
+		const option: SweetAlertOptions = {
+			title: 'Are you sure?',
+			text: text,
+			type: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Yes, I am sure!',
+			cancelButtonText: 'Nope'
+		};
+		return swal(option);
+	}
 }

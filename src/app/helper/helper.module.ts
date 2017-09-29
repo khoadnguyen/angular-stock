@@ -1,12 +1,13 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ToThaiDatePipe } from './to-thai-date.pipe';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {ToDatePipe} from './to-date.pipe';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
-  declarations: [ToThaiDatePipe],
-  exports: [ToThaiDatePipe]
+	imports: [
+		CommonModule
+	],
+	declarations: [ToDatePipe],
+	exports: [ToDatePipe]
 })
-export class HelperModule { }
+export class HelperModule {
+}
