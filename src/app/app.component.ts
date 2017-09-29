@@ -1,22 +1,14 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { StockService } from "./stock.service";
+import { Component, Inject } from '@angular/core';
 
 @Component({
-    selector: 'my-app',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss']
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    title = 'My Stock App';
+  title = 'app works!';
 
-    constructor(private router: Router, private stock$: StockService) {
-        this.getData();
-    }
-
-    getData(): void {
-        this.stock$.getData().subscribe(res => {
-            console.log(res);
-        });
-    }
+  constructor(@Inject('API_URL') private url: string) {
+    console.log(this.url);
+  }
 }

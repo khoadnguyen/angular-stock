@@ -1,17 +1,14 @@
-import {ClaritySeedAppHome} from './app.po';
+import { WmPage } from './app.po';
 
-fdescribe('clarity-seed app', function () {
-
-  let expectedMsg: string = 'This is a Clarity seed application. This is the default page that loads for the application.';
-
-  let page: ClaritySeedAppHome;
+describe('wm App', () => {
+  let page: WmPage;
 
   beforeEach(() => {
-    page = new ClaritySeedAppHome();
+    page = new WmPage();
   });
 
-  it('should display: ' + expectedMsg, () => {
+  it('should display message saying app works', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual(expectedMsg)
+    expect(page.getParagraphText()).toEqual('app works!');
   });
 });

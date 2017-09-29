@@ -5,13 +5,18 @@ import { Observable } from "rxjs/Observable";
 
 @Injectable()
 export class StockService {
-  apiKey: string = "";
-  url: string = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=MSFT&outputsize=compact&apikey=X7M7H6GIDVV7YRDH";
+  apiKey: string = "8R3ATDA4Z6HXHRCC";
+  apiSymbol: string = "GOOGL";
+  apiType: string = "TIME_SERIES_DAILY";
+  apiLrg: string = "full";
+  apiSm: string = "compact";
+  apiInterval: number = 60;
+  apiUrl: string = "//www.alphavantage.co/query?function=";
 
   constructor(private http: Http) { }
 
   getData(){
-      return this.http.get(this.url)
+      return this.http.get(this.apiUrl + this.apiType + "&symbol=" + this.apiSymbol + "&outputsize=" + this.apiSm + "&apikey=" + this.apiKey )
           .map(res => res.json());
   }
 
