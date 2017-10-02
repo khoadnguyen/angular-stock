@@ -12,12 +12,11 @@ import {AppComponent} from './app.component';
 import {environment} from '../environments/environment';
 
 import {LoginModule} from './login/login.module';
-import {AdminModule} from './admin/admin.module';
+import {AdminModule} from './main/admin.module';
 import {AuthGuard} from './auth-guard.service';
 import {AlertService} from './alert.service';
-import {StockService} from "./stock.service";
-import {NewsService} from "./news.service";
-
+import {StockService} from "./services/stock.service";
+import {NewsService} from "./services/news.service";
 
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 

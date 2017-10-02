@@ -6,7 +6,7 @@ import {Component, Inject} from '@angular/core';
 	styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-	title = 'app works!';
+	title = 'E*Trudite';
 
 	constructor(@Inject('API_URL') private url: string) {
 		console.log(this.url);

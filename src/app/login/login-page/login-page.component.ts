@@ -44,8 +44,8 @@ export class LoginPageComponent implements OnInit {
 				sessionStorage.setItem('fullname', fullname);
 				// hide spinner
 				this.isLogging = false;
-				// redirect to admin module
-				this.router.navigate(['admin']);
+				// redirect to main module
+				this.router.navigate(['main']);
 			} else {
 				this.isLogging = false;
 				this.alert.error('Pleas enter valid login');

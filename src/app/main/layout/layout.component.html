@@ -1,0 +1,52 @@
+<clr-main-container>
+	<clr-header class="header-4">
+		<div class="branding">
+			<a class="nav-link">
+				<clr-icon shape="asterisk" class="is-solid"></clr-icon>
+				<span class="title">E*Trudite</span>
+			</a>
+		</div>
+		<div class="header-nav">
+			<a class="nav-link nav-icon" routerLink="/admin/main" routerLinkActive="active">
+				<clr-icon shape="home" class="is-solid"></clr-icon>
+			</a>
+			<a class="nav-link nav-icon" routerLink="/admin/labeler" routerLinkActive="active">
+				<clr-icon shape="group" class="is-solid"></clr-icon>
+			</a>
+		</div>
+		<div class="header-actions">
+			<clr-dropdown class="dropdown bottom-right">
+				<button class="nav-text" clrDropdownToggle>
+					{{ fullname }}
+					<clr-icon shape="caret down" class="is-solid"></clr-icon>
+				</button>
+				<div class="dropdown-menu">
+					<a href="javascript://" clrDropdownItem>
+						<span class="title">Preferences</span>
+					</a>
+					<a (click)="logout()" clrDropdownItem>
+						<span class="title">Log Out</span>
+					</a>
+				</div>
+			</clr-dropdown>
+		</div>
+	</clr-header>
+
+	<div class="content-container">
+		<div class="content-area">
+			<router-outlet></router-outlet>
+		</div>
+		<clr-vertical-nav [clrVerticalNavCollapsible]="collapsible" [(clrVerticalNavCollapsed)]="collapsed">
+			<a clrVerticalNavLink routerLink="./normal" routerLinkActive="active">
+				<clr-icon clrVerticalNavIcon shape="user"></clr-icon>
+				GOOGL
+			</a>
+			<a clrVerticalNavLink routerLink="./electric" routerLinkActive="active">
+				AAPL <clr-icon clrVerticalNavIcon shape="bolt"></clr-icon> <clr-icon clrVerticalNavIcon shape="bolt"></clr-icon>
+			</a>
+			<div class="nav-divider"></div>
+
+		</clr-vertical-nav>
+	</div>
+
+</clr-main-container>

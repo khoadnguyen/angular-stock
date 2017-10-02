@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {AuthGuard} from '../auth-guard.service';
 import {LayoutComponent} from './layout/layout.component';
 // pages
@@ -8,7 +8,7 @@ import {PageNotFoundComponent} from '../page-not-found/page-not-found.component'
 
 const routes: Routes = [
 	{
-		path: 'admin',
+		path: 'main',
 		component: LayoutComponent,
 		canActivate: [AuthGuard],
 		children: [
