@@ -1,4 +1,15 @@
 <h1>Dashboard</h1>
+<div class="btn-group btn-primary btn-group-right">
+	<button class="btn">
+		<clr-icon shape="plus" class="is-solid"></clr-icon>
+		Add
+	</button>
+	<button class="btn btn-danger">
+		<clr-icon shape="trash" class="is-solid"></clr-icon>
+		Delete
+	</button>
+</div>
+
 <section class="main-content">
 	<div class="card">
 		<div class="card-header">
@@ -7,42 +18,57 @@
 		<div class="card-block">
 			<div class="card-text">
 				<p>Praesent malesuada nibh ac imperdiet interdum. Etiam gravida, lorem a porta consectetur, purus purus vulputate odio, a pellentesque sapien ex posuere nunc. Integer eleifend fermentum enim, ac suscipit eros ullamcorper non. In ac ligula eu risus gravida posuere. Maecenas viverra enim sed commodo finibus. Duis odio lacus, finibus a mauris vitae, imperdiet consectetur orci. Fusce convallis eros odio, vel auctor magna molestie ut.</p>
+				<p>Maecenas elit risus, ultrices eget tempus in, efficitur at augue. Donec laoreet augue vitae arcu interdum tristique. Cras mollis libero quam, et suscipit mauris scelerisque finibus. Etiam maximus purus eu fermentum tristique. Proin ultricies tellus orci, ut varius felis volutpat vel. Aliquam purus dui, auctor eu posuere ut, congue porta diam. Nulla eu orci eget erat scelerisque fermentum at id ex.</p>
+				<clr-modal [(clrModalOpen)]="basic">
+					<h3 class="modal-title">I have a nice title</h3>
+					<div class="modal-body">
+						<p>But not much to say...</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-outline" (click)="basic = false">Cancel</button>
+						<button type="button" class="btn btn-primary" (click)="basic = false">Ok</button>
+					</div>
+				</clr-modal>
 			</div>
 		</div>
 		<div class="card-footer">
-			<button class="btn btn-sm btn-link">Add New Stock</button>
+			<button class="btn btn-sm btn-link">
+				<clr-icon shape="plus" class="is-solid"></clr-icon>
+				Add New Stock
+			</button>
 		</div>
 	</div>
-	<div class="card">
+	<div class="card card-performance">
 		<div class="card-header">
-			Portfolio Peroformance
+			Portfolio Performance
 		</div>
 		<div class="card-img">
-			<img src="http://via.placeholder.com//540x200/006a91/ffffff/jpg?text=Overview+Chart">
+			<img src="http://via.placeholder.com/1490x300/006a91/ffffff/jpg?text=Overview+Chart">
 		</div>
 		<div class="card-block">
 			<div class="card-text">
 				<clr-datagrid>
 					<clr-dg-column>Date</clr-dg-column>
-					<clr-dg-column>Buy</clr-dg-column>
-					<clr-dg-column>Sell</clr-dg-column>
+					<clr-dg-column>Open</clr-dg-column>
+					<clr-dg-column>High</clr-dg-column>
+					<clr-dg-column>Low</clr-dg-column>
 					<clr-dg-column>Close</clr-dg-column>
+					<clr-dg-column>Volume</clr-dg-column>
 
-					<clr-dg-row>
-						<clr-dg-cell>09.25.17</clr-dg-cell>
-						<clr-dg-cell>115.3</clr-dg-cell>
-						<clr-dg-cell>117.14</clr-dg-cell>
-						<clr-dg-cell>115.8</clr-dg-cell>
+					<clr-dg-row *clrDgItems="let stock of dataStockDaily">
+						<clr-dg-cell>{{stock["6. date"]}}</clr-dg-cell>
+						<clr-dg-cell>{{stock["1. open"]}}</clr-dg-cell>
+						<clr-dg-cell>{{stock["2. high"]}}</clr-dg-cell>
+						<clr-dg-cell>{{stock["3. low"]}}</clr-dg-cell>
+						<clr-dg-cell>{{stock["4. close"]}}</clr-dg-cell>
+						<clr-dg-cell>{{stock["5. volume"]}}</clr-dg-cell>
 					</clr-dg-row>
 
-					<clr-dg-row>
-						<clr-dg-cell>09.24.17</clr-dg-cell>
-						<clr-dg-cell>114.1</clr-dg-cell>
-						<clr-dg-cell>116.9</clr-dg-cell>
-						<clr-dg-cell>115.1</clr-dg-cell>
-					</clr-dg-row>
-
-					<clr-dg-footer>2 dates</clr-dg-footer>
+					<clr-dg-footer>
+						{{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+						of {{dataStockDaily.length}} dates
+						<clr-dg-pagination #pagination [clrDgPageSize]="5" [clrDgTotalItems]="5"></clr-dg-pagination>
+					</clr-dg-footer>
 				</clr-datagrid>
 			</div>
 		</div>
@@ -52,18 +78,48 @@
 			GOOGL
 		</div>
 		<div class="card-img">
-			<img src="http://via.placeholder.com//540x200/006a91/ffffff/jpg?text=Chart">
+			<img src="http://via.placeholder.com/540x200/006a91/ffffff/jpg?text=Chart">
 		</div>
 		<div class="card-block">
 			<div class="card-title">
-				Block
+				Current Stock Info
 			</div>
 			<div class="card-text">
-				...
+				<table class="table table-vertical">
+					<tbody>
+					<tr>
+						<th>Open</th>
+						<td>123</td>
+					</tr>
+					<tr>
+						<th>Close</th>
+						<td>321</td>
+					</tr>
+					<tr>
+						<th>High</th>
+						<td>123</td>
+					</tr>
+					<tr>
+						<th>Compact tables</th>
+						<td>.table-compact</td>
+					</tr>
+					<tr>
+						<th>Vertical tables</th>
+						<td>.table-vertical</td>
+					</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 		<div class="card-footer">
-			<button class="btn btn-sm btn-link">Remove</button>
+			<button class="btn btn-sm btn-link">
+				<clr-icon shape="star"></clr-icon>
+				Favorite
+			</button>
+			<button class="btn btn-sm btn-link">
+				<clr-icon shape="trash"></clr-icon>
+				Remove
+			</button>
 		</div>
 	</div>
 	<div class="card">
@@ -71,18 +127,48 @@
 			AAPL
 		</div>
 		<div class="card-img">
-			<img src="http://via.placeholder.com//540x200/006a91/ffffff/jpg?text=Chart">
+			<img src="http://via.placeholder.com/540x200/006a91/ffffff/jpg?text=Chart">
 		</div>
 		<div class="card-block">
 			<div class="card-title">
-				Block
+				Current Stock Info
 			</div>
 			<div class="card-text">
-				...
+				<table class="table table-vertical">
+					<tbody>
+					<tr>
+						<th>Open</th>
+						<td>123</td>
+					</tr>
+					<tr>
+						<th>Close</th>
+						<td>321</td>
+					</tr>
+					<tr>
+						<th>High</th>
+						<td>123</td>
+					</tr>
+					<tr>
+						<th>Compact tables</th>
+						<td>.table-compact</td>
+					</tr>
+					<tr>
+						<th>Vertical tables</th>
+						<td>.table-vertical</td>
+					</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 		<div class="card-footer">
-			<button class="btn btn-sm btn-link">Remove</button>
+			<button class="btn btn-sm btn-link">
+				<clr-icon shape="star"></clr-icon>
+				Favorite
+			</button>
+			<button class="btn btn-sm btn-link">
+				<clr-icon shape="trash"></clr-icon>
+				Remove
+			</button>
 		</div>
 	</div>
 	<div class="card">
@@ -90,18 +176,48 @@
 			AMAZ
 		</div>
 		<div class="card-img">
-			<img src="http://via.placeholder.com//540x200/006a91/ffffff/jpg?text=Chart">
+			<img src="http://via.placeholder.com/540x200/006a91/ffffff/jpg?text=Chart">
 		</div>
 		<div class="card-block">
 			<div class="card-title">
-				Block
+				Current Stock Info
 			</div>
 			<div class="card-text">
-				...
+				<table class="table table-vertical">
+					<tbody>
+					<tr>
+						<th>Open</th>
+						<td>123</td>
+					</tr>
+					<tr>
+						<th>Close</th>
+						<td>321</td>
+					</tr>
+					<tr>
+						<th>High</th>
+						<td>123</td>
+					</tr>
+					<tr>
+						<th>Compact tables</th>
+						<td>.table-compact</td>
+					</tr>
+					<tr>
+						<th>Vertical tables</th>
+						<td>.table-vertical</td>
+					</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 		<div class="card-footer">
-			<button class="btn btn-sm btn-link">Remove</button>
+			<button class="btn btn-sm btn-link">
+				<clr-icon shape="star"></clr-icon>
+				Favorite
+			</button>
+			<button class="btn btn-sm btn-link">
+				<clr-icon shape="trash"></clr-icon>
+				Remove
+			</button>
 		</div>
 	</div>
 </section>

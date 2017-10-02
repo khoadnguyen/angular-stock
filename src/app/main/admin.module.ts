@@ -11,6 +11,8 @@ import {AuthModule} from '../auth/auth.module';
 
 import {MainService} from './main.service';
 import {AlertService} from '../alert.service';
+import {StockService} from "../services/stock.service";
+import {NewsService} from "../services/news.service";
 import {LayoutComponent} from './layout/layout.component';
 
 @NgModule({
@@ -25,7 +27,9 @@ import {LayoutComponent} from './layout/layout.component';
 	declarations: [MainPageComponent, LayoutComponent, AboutPageComponent],
 	providers: [
 		MainService,
-		AlertService
+		AlertService,
+		StockService,
+		NewsService
 	]
 })
 export class AdminModule {

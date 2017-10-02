@@ -1,5 +1,7 @@
 .main-content {
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: 1fr 2fr;
-	grid-gap: 2% 2%;
+	grid-template-columns: 1fr
+}
+
+.card-img, .card-img img {
+	max-height: 300px;
 }
