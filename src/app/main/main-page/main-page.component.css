@@ -1,0 +1,14 @@
+.main-content {
+	grid-template-columns: 1fr;
+	grid-gap: 0 1%;
+}
+
+@media only screen and (min-width: 769px) {
+
+	.main-content {
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-template-rows: 1.5fr 1fr;
+		grid-gap: 2% 2%;
+	}
+
+}
