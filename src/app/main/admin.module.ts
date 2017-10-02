@@ -29,7 +29,7 @@ import {LayoutComponent} from './layout/layout.component';
 		MainService,
 		AlertService,
 		StockService,
-		NewsService
+		NewsService,
 	]
 })
 export class AdminModule {
