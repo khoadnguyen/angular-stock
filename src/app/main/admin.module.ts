@@ -4,33 +4,38 @@ import {FormsModule} from '@angular/forms';
 import {ClarityModule} from 'clarity-angular';
 
 import {AdminRoutingModule} from './admin-routing.module';
-import {MainPageComponent} from './main-page/main-page.component';
-import {AboutPageComponent} from "./about-page/about-page.component";
 import {HelperModule} from '../helper/helper.module';
 import {AuthModule} from '../auth/auth.module';
+import {NgxChartsModule} from '@swimlane/ngx-charts';
+
+import {LayoutComponent} from './layout/layout.component';
+import {MainPageComponent} from './main-page/main-page.component';
+import {AboutPageComponent} from './about-page/about-page.component';
+import {ZingchartComponent} from '../zingchart/zingchart.component';
 
 import {MainService} from './main.service';
 import {AlertService} from '../alert.service';
-import {StockService} from "../services/stock.service";
-import {NewsService} from "../services/news.service";
-import {LayoutComponent} from './layout/layout.component';
+import {StockService} from '../services/stock.service';
+import {NewsService} from '../services/news.service';
+
 
 @NgModule({
-	imports: [
-		CommonModule,
-		AdminRoutingModule,
-		HelperModule,
-		FormsModule,
-		ClarityModule,
-		AuthModule
-	],
-	declarations: [MainPageComponent, LayoutComponent, AboutPageComponent],
-	providers: [
-		MainService,
-		AlertService,
-		StockService,
-		NewsService,
-	]
+  imports: [
+    CommonModule,
+    AdminRoutingModule,
+    HelperModule,
+    FormsModule,
+    ClarityModule,
+    AuthModule,
+    NgxChartsModule
+  ],
+  declarations: [MainPageComponent, LayoutComponent, AboutPageComponent, ZingchartComponent],
+  providers: [
+    MainService,
+    AlertService,
+    StockService,
+    NewsService,
+  ]
 })
 export class AdminModule {
 }

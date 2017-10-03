@@ -10,15 +10,15 @@ import {LoginPageComponent} from './login-page/login-page.component';
 import {LoginService} from './login.service';
 
 @NgModule({
-	imports: [
-		CommonModule,
-		FormsModule,
-		LoginRoutingModule,
-		HelperModule,
-		ClarityModule
-	],
-	declarations: [LoginPageComponent],
-	providers: [LoginService]
+  imports: [
+    CommonModule,
+    FormsModule,
+    LoginRoutingModule,
+    HelperModule,
+    ClarityModule
+  ],
+  declarations: [LoginPageComponent],
+  providers: [LoginService]
 })
 export class LoginModule {
 }

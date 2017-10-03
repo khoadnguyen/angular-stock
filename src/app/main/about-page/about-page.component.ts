@@ -1,15 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 
 @Component({
-	selector: 'app-main-page',
-	templateUrl: './about-page.component.html',
-	styleUrls: ['./about-page.component.css']
+  selector: 'app-main-page',
+  templateUrl: './about-page.component.html',
+  styleUrls: ['./about-page.component.css']
 })
 export class AboutPageComponent implements OnInit {
 
-	constructor() {
-	}
+  constructor() {
+  }
 
-	ngOnInit() {
-	}
+  ngOnInit() {
+  }
 }

@@ -1,0 +1,25 @@
+:host {
+/* Preserve aspect-ratio, see http://wellcaffeinated.net/articles/2012/12/10/very-simple-css-only-proportional-resizing-of-elements*/
+.rbtool-zingchart-outer {
+  width: 100%;
+  padding-top: 75%;
+  position: relative;
+}
+.rbtool-zingchart-outer .rbtool-zingchart-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.rbtool-zingchart-outer .rbtool-zingchart-inner rbtool-loading-indicator {
+  position: absolute;
+}
+.rbtool-zingchart-outer .rbtool-zingchart-inner .rbtool-chart-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+}

@@ -19,28 +19,28 @@ import {AlertService} from './alert.service';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 
 @NgModule({
-	declarations: [
-		AppComponent,
-		PageNotFoundComponent
-	],
-	imports: [
-		BrowserModule,
-		FormsModule,
-		HttpModule,
-		ClarityModule,
-		BrowserAnimationsModule,
-		AppRoutingModule,
-		LoginModule,
-		AdminModule,
-		NgxChartsModule
-	],
-	providers: [
-		AuthGuard,
-		AlertService,
-		{provide: 'API_URL', useValue: environment.apiUrl},
-		{provide: LocationStrategy, useClass: HashLocationStrategy}
-	],
-	bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    PageNotFoundComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpModule,
+    ClarityModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    LoginModule,
+    AdminModule,
+    NgxChartsModule
+  ],
+  providers: [
+    AuthGuard,
+    AlertService,
+    {provide: 'API_URL', useValue: environment.apiUrl},
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }
