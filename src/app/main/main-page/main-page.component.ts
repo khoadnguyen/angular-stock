@@ -1,7 +1,7 @@
 import {Component, OnInit } from '@angular/core';
 import {StockService} from "../../services/stock.service";
-
-
+import {NgxChartsModule} from '@swimlane/ngx-charts';
+import {single} from './data';
 
 @Component({
 	selector: 'app-main-page',
@@ -12,13 +12,29 @@ export class MainPageComponent implements OnInit {
 	public dataStockDaily = [];
 	public open: any;
 
+	single: any[];
+	multi: any[];
+
+	view: any[] = [700, 400];
+
+	// options
+	showXAxis = true;
+	showYAxis = true;
+	gradient = false;
+	showLegend = true;
+	showXAxisLabel = true;
+	xAxisLabel = 'Country';
+	showYAxisLabel = true;
+	yAxisLabel = 'Population';
+
 	constructor(private stock$: StockService) {
 		this.getData();
+		Object.assign(this, {single})
 	}
 
 	ngOnInit() {
 		this.open = this.dataStockDaily[0];
-		console.log(this.open)
+		//console.log(this.open)
 	}
 
 	getData(): void {
@@ -34,6 +50,14 @@ export class MainPageComponent implements OnInit {
 			}
 			//console.log(this.dataStockDaily);
 		});
+	}
+
+	colorScheme = {
+		domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+	};
+
+	onSelect(event) {
+		console.log(event);
 	}
 
 }

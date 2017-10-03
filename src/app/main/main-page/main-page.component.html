@@ -1,14 +1,8 @@
 <h1>Dashboard</h1>
-<div class="btn-group btn-primary btn-group-right">
-	<button class="btn">
-		<clr-icon shape="plus" class="is-solid"></clr-icon>
-		Add
-	</button>
-	<button class="btn btn-danger">
-		<clr-icon shape="trash" class="is-solid"></clr-icon>
-		Delete
-	</button>
-</div>
+<button class="btn btn-primary btn-group-right">
+	<clr-icon shape="plus" class="is-solid"></clr-icon>
+	Add
+</button>
 
 <section class="main-content">
 	<div class="card">
@@ -43,7 +37,21 @@
 			Portfolio Performance
 		</div>
 		<div class="card-img">
-			<img src="http://via.placeholder.com/1490x300/006a91/ffffff/jpg?text=Overview+Chart">
+			<h2>Image</h2>
+			<ngx-charts-bar-vertical
+					[view]="view"
+					[scheme]="colorScheme"
+					[results]="single"
+					[gradient]="gradient"
+					[xAxis]="showXAxis"
+					[yAxis]="showYAxis"
+					[legend]="showLegend"
+					[showXAxisLabel]="showXAxisLabel"
+					[showYAxisLabel]="showYAxisLabel"
+					[xAxisLabel]="xAxisLabel"
+					[yAxisLabel]="yAxisLabel"
+					(select)="onSelect($event)">
+			</ngx-charts-bar-vertical>
 		</div>
 		<div class="card-block">
 			<div class="card-text">
@@ -78,7 +86,7 @@
 			GOOGL
 		</div>
 		<div class="card-img">
-			<img src="http://via.placeholder.com/540x200/006a91/ffffff/jpg?text=Chart">
+			<img src="http://via.placeholder.com/540x200/29B6F6/ffffff/jpg?text=Chart">
 		</div>
 		<div class="card-block">
 			<div class="card-title">
@@ -127,7 +135,7 @@
 			AAPL
 		</div>
 		<div class="card-img">
-			<img src="http://via.placeholder.com/540x200/006a91/ffffff/jpg?text=Chart">
+			<img src="http://via.placeholder.com/540x200/29B6F6/ffffff/jpg?text=Chart">
 		</div>
 		<div class="card-block">
 			<div class="card-title">
@@ -176,7 +184,7 @@
 			AMAZ
 		</div>
 		<div class="card-img">
-			<img src="http://via.placeholder.com/540x200/006a91/ffffff/jpg?text=Chart">
+			<img src="http://via.placeholder.com/540x200/29B6F6/ffffff/jpg?text=Chart">
 		</div>
 		<div class="card-block">
 			<div class="card-title">

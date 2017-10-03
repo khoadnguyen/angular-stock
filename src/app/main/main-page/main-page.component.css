@@ -4,8 +4,7 @@ h1 {
 
 .btn-group-right {
 	position: relative;
-	float: right;
-	margin-top: -40px;
+	margin-top: -50px;
 }
 
 .main-content {
@@ -28,6 +27,25 @@ h1 {
 
 	.card-performance .card-img, .card-performance .card-img img {
 		max-height: 300px;
+	}
+
+	.btn-group-right {
+		margin-left: calc(100% - 8vw);
+	}
+}
+
+@media only screen and (min-width: 1024px) {
+
+	.btn-group-right {
+		margin-left: calc(100% - 6vw);
+	}
+
+}
+
+@media only screen and (min-width: 1440px) {
+
+	.btn-group-right {
+		margin-left: calc(100% - 4vw);
 	}
 
 }

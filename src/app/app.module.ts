@@ -7,6 +7,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ClarityModule} from 'clarity-angular';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
+import {NgxChartsModule} from '@swimlane/ngx-charts';
 
 import {environment} from '../environments/environment';
 
@@ -30,7 +31,8 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 		BrowserAnimationsModule,
 		AppRoutingModule,
 		LoginModule,
-		AdminModule
+		AdminModule,
+		NgxChartsModule
 	],
 	providers: [
 		AuthGuard,
