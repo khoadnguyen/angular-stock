@@ -9,6 +9,10 @@ h1 {
   grid-template-columns: 1fr;
   grid-gap: 1rem 1rem;
 }
+.card-chart {
+  display: flex;
+  min-height: 300px;
+}
 @media only screen and (min-width: 769px) {
 
   .main-content {

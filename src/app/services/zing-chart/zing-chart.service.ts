@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {ZingChartOptions} from './zing-chart-options.interface';
 import {ZING_CHART_DEFAULTS, ZING_CHART_OPTIONS_CONFIGURATION, ZING_CHART_TYPE_DEFAULTS} from './zing-chart-defaults';
 
-
 /**
  * Service for compiling theme / configuration of zing-charts
  */
@@ -12,7 +11,7 @@ export class ZingChartService {
   static chartCounter = 0;
 
   constructor() {
-    window.ZC.BUILDCODE = ['f694df894685712d50111dfd7e43c9af1ae12d28', 'Raiffeisen Schweiz'];
+    // window.ZC.BUILDCODE = ['f694df894685712d50111dfd7e43c9af1ae12d28', 'Raiffeisen Schweiz'];
   }
 
   generateChartId() {

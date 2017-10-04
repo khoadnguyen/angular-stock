@@ -17,8 +17,8 @@ export class StockService {
   constructor(private http: Http) {
   }
 
-  getData() {
-    return this.http.get(this.apiUrl + this.apiType + "&symbol=" + this.apiSymbol + "&outputsize=" + this.apiSm + "&apikey=" + this.apiKey)
+  getData(symbol:string) {
+    return this.http.get(this.apiUrl + this.apiType + "&symbol=" + symbol + "&outputsize=" + this.apiSm + "&apikey=" + this.apiKey)
         .map(res => res.json());
   }
 

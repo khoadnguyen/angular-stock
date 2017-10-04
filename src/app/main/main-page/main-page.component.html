@@ -1,231 +1,260 @@
 <h1>Dashboard</h1>
 <button class="btn btn-primary btn-group-right">
-  <clr-icon shape="plus" class="is-solid"></clr-icon>
-  Add
+	<clr-icon shape="plus" class="is-solid"></clr-icon>
+	Add
 </button>
 
 <section class="main-content">
-  <div class="card">
-    <div class="card-header">
-      Welcome {{fullname}}
-    </div>
-    <div class="card-block">
-      <div class="card-text">
-        <p>Praesent malesuada nibh ac imperdiet interdum. Etiam gravida, lorem a porta consectetur, purus purus vulputate odio, a pellentesque sapien ex posuere nunc. Integer eleifend fermentum enim, ac suscipit eros ullamcorper non. In ac ligula eu risus gravida posuere. Maecenas viverra enim sed commodo finibus. Duis odio lacus, finibus a mauris vitae, imperdiet consectetur orci. Fusce convallis eros odio, vel auctor magna molestie ut.</p>
-        <p>Maecenas elit risus, ultrices eget tempus in, efficitur at augue. Donec laoreet augue vitae arcu interdum tristique. Cras mollis libero quam, et suscipit mauris scelerisque finibus. Etiam maximus purus eu fermentum tristique. Proin ultricies tellus orci, ut varius felis volutpat vel. Aliquam purus dui, auctor eu posuere ut, congue porta diam. Nulla eu orci eget erat scelerisque fermentum at id ex.</p>
-        <clr-modal [(clrModalOpen)]="basic">
-          <h3 class="modal-title">I have a nice title</h3>
-          <div class="modal-body">
-            <p>But not much to say...</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline" (click)="basic = false">Cancel</button>
-            <button type="button" class="btn btn-primary" (click)="basic = false">Ok</button>
-          </div>
-        </clr-modal>
-      </div>
-    </div>
-    <div class="card-footer">
-      <button class="btn btn-sm btn-link">
-        <clr-icon shape="plus" class="is-solid"></clr-icon>
-        Add New Stock
-      </button>
-    </div>
-  </div>
-  <div class="card card-performance">
-    <div class="card-header">
-      Portfolio Performance
-    </div>
-    <div class="card-img">
-      <h2>Image</h2>
-      <!--<ngx-charts-bar-vertical
-          [view]="view"
-          [scheme]="colorScheme"
-          [results]="single"
-          [gradient]="gradient"
-          [xAxis]="showXAxis"
-          [yAxis]="showYAxis"
-          [legend]="showLegend"
-          [showXAxisLabel]="showXAxisLabel"
-          [showYAxisLabel]="showYAxisLabel"
-          [xAxisLabel]="xAxisLabel"
-          [yAxisLabel]="yAxisLabel"
-          (select)="onSelect($event)">
-      </ngx-charts-bar-vertical>-->
-    </div>
-    <div class="card-block">
-      <div class="card-text">
-        <clr-datagrid>
-          <clr-dg-column>Date</clr-dg-column>
-          <clr-dg-column>Open</clr-dg-column>
-          <clr-dg-column>High</clr-dg-column>
-          <clr-dg-column>Low</clr-dg-column>
-          <clr-dg-column>Close</clr-dg-column>
-          <clr-dg-column>Volume</clr-dg-column>
+	<div class="card">
+		<div class="card-header">
+			Welcome {{fullname}}
+		</div>
+		<div class="card-block">
+			<div class="card-text">
+				<p>Praesent malesuada nibh ac imperdiet interdum. Etiam gravida, lorem a porta consectetur, purus purus vulputate odio, a pellentesque sapien ex posuere nunc. Integer eleifend fermentum enim, ac suscipit eros ullamcorper non. In ac ligula eu risus gravida posuere. Maecenas viverra enim sed commodo finibus. Duis odio lacus, finibus a mauris vitae, imperdiet consectetur orci. Fusce convallis eros odio, vel auctor magna molestie ut.</p>
+				<p>Maecenas elit risus, ultrices eget tempus in, efficitur at augue. Donec laoreet augue vitae arcu interdum tristique. Cras mollis libero quam, et suscipit mauris scelerisque finibus. Etiam maximus purus eu fermentum tristique. Proin ultricies tellus orci, ut varius felis volutpat vel. Aliquam purus dui, auctor eu posuere ut, congue porta diam. Nulla eu orci eget erat scelerisque fermentum at id ex.</p>
+				<clr-modal [(clrModalOpen)]="basic">
+					<h3 class="modal-title">I have a nice title</h3>
+					<div class="modal-body">
+						<p>But not much to say...</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-outline" (click)="basic = false">Cancel</button>
+						<button type="button" class="btn btn-primary" (click)="basic = false">Ok</button>
+					</div>
+				</clr-modal>
+			</div>
+		</div>
+		<div class="card-footer">
+			<button class="btn btn-sm btn-link">
+				<clr-icon shape="plus" class="is-solid"></clr-icon>
+				Add New Stock
+			</button>
+		</div>
+	</div>
+	<div class="card card-performance">
+		<div class="card-header">
+			Portfolio Performance
+		</div>
+		<div class="card-block">
+			<div class="card-chart card-text">
+				<ngx-charts-bar-vertical-2d
+						[view]="Barview"
+						[scheme]="colorScheme"
+						[results]="multi"
+						[gradient]="gradient"
+						[xAxis]="showXAxis"
+						[yAxis]="showYAxis"
+						[legend]="showLegend"
+						[showXAxisLabel]="showXAxisLabel"
+						[showYAxisLabel]="showYAxisLabel"
+						[xAxisLabel]="xAxisLabel"
+						[yAxisLabel]="yAxisLabel"
+						(select)="onSelect($event)">
+				</ngx-charts-bar-vertical-2d>
+			</div>
+			<div class="card-text">
 
-          <clr-dg-row *clrDgItems="let stock of dataStockDaily">
-            <clr-dg-cell>{{stock["6. date"]}}</clr-dg-cell>
-            <clr-dg-cell>{{stock["1. open"]}}</clr-dg-cell>
-            <clr-dg-cell>{{stock["2. high"]}}</clr-dg-cell>
-            <clr-dg-cell>{{stock["3. low"]}}</clr-dg-cell>
-            <clr-dg-cell>{{stock["4. close"]}}</clr-dg-cell>
-            <clr-dg-cell>{{stock["5. volume"]}}</clr-dg-cell>
-          </clr-dg-row>
+				<clr-tabs>
+					<clr-tab>
+						<button clrTabLink>GOOGL</button>
+						<ng-template [(clrIfActive)]="dashboardActive">
+							<clr-tab-content>
+								<clr-datagrid>
+									<clr-dg-column>Date</clr-dg-column>
+									<clr-dg-column>Open</clr-dg-column>
+									<clr-dg-column>High</clr-dg-column>
+									<clr-dg-column>Low</clr-dg-column>
+									<clr-dg-column>Close</clr-dg-column>
+									<clr-dg-column>Volume</clr-dg-column>
 
-          <clr-dg-footer>
-            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-            of {{dataStockDaily.length}} dates
-            <clr-dg-pagination #pagination [clrDgPageSize]="5" [clrDgTotalItems]="5"></clr-dg-pagination>
-          </clr-dg-footer>
-        </clr-datagrid>
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header">
-      GOOGL
-    </div>
-    <div class="card-img">
-      <img src="http://via.placeholder.com/540x200/29B6F6/ffffff/jpg?text=Chart">
-    </div>
-    <div class="card-block">
-      <div class="card-title">
-        Current Stock Info
-      </div>
-      <div class="card-text">
-        <table class="table table-vertical">
-          <tbody>
-          <tr>
-            <th>Open</th>
-            <td>123</td>
-          </tr>
-          <tr>
-            <th>Close</th>
-            <td>321</td>
-          </tr>
-          <tr>
-            <th>High</th>
-            <td>123</td>
-          </tr>
-          <tr>
-            <th>Compact tables</th>
-            <td>.table-compact</td>
-          </tr>
-          <tr>
-            <th>Vertical tables</th>
-            <td>.table-vertical</td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="card-footer">
-      <button class="btn btn-sm btn-link">
-        <clr-icon shape="star"></clr-icon>
-        Favorite
-      </button>
-      <button class="btn btn-sm btn-link">
-        <clr-icon shape="trash"></clr-icon>
-        Remove
-      </button>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header">
-      AAPL
-    </div>
-    <div class="card-img">
-      <img src="http://via.placeholder.com/540x200/29B6F6/ffffff/jpg?text=Chart">
-    </div>
-    <div class="card-block">
-      <div class="card-title">
-        Current Stock Info
-      </div>
-      <div class="card-text">
-        <table class="table table-vertical">
-          <tbody>
-          <tr>
-            <th>Open</th>
-            <td>123</td>
-          </tr>
-          <tr>
-            <th>Close</th>
-            <td>321</td>
-          </tr>
-          <tr>
-            <th>High</th>
-            <td>123</td>
-          </tr>
-          <tr>
-            <th>Compact tables</th>
-            <td>.table-compact</td>
-          </tr>
-          <tr>
-            <th>Vertical tables</th>
-            <td>.table-vertical</td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="card-footer">
-      <button class="btn btn-sm btn-link">
-        <clr-icon shape="star"></clr-icon>
-        Favorite
-      </button>
-      <button class="btn btn-sm btn-link">
-        <clr-icon shape="trash"></clr-icon>
-        Remove
-      </button>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header">
-      AMAZ
-    </div>
-    <div class="card-img">
-      <img src="http://via.placeholder.com/540x200/29B6F6/ffffff/jpg?text=Chart">
-    </div>
-    <div class="card-block">
-      <div class="card-title">
-        Current Stock Info
-      </div>
-      <div class="card-text">
-        <table class="table table-vertical">
-          <tbody>
-          <tr>
-            <th>Open</th>
-            <td>123</td>
-          </tr>
-          <tr>
-            <th>Close</th>
-            <td>321</td>
-          </tr>
-          <tr>
-            <th>High</th>
-            <td>123</td>
-          </tr>
-          <tr>
-            <th>Compact tables</th>
-            <td>.table-compact</td>
-          </tr>
-          <tr>
-            <th>Vertical tables</th>
-            <td>.table-vertical</td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="card-footer">
-      <button class="btn btn-sm btn-link">
-        <clr-icon shape="star"></clr-icon>
-        Favorite
-      </button>
-      <button class="btn btn-sm btn-link">
-        <clr-icon shape="trash"></clr-icon>
-        Remove
-      </button>
-    </div>
-  </div>
+									<clr-dg-row *clrDgItems="let stock of dataStockDaily">
+										<clr-dg-cell>{{stock["6. date"]}}</clr-dg-cell>
+										<clr-dg-cell>{{stock["1. open"]}}</clr-dg-cell>
+										<clr-dg-cell>{{stock["2. high"]}}</clr-dg-cell>
+										<clr-dg-cell>{{stock["3. low"]}}</clr-dg-cell>
+										<clr-dg-cell>{{stock["4. close"]}}</clr-dg-cell>
+										<clr-dg-cell>{{stock["5. volume"]}}</clr-dg-cell>
+									</clr-dg-row>
+
+									<clr-dg-footer>
+										{{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+										of {{dataStockDaily.length}} dates
+										<clr-dg-pagination #pagination [clrDgPageSize]="5" [clrDgTotalItems]="5"></clr-dg-pagination>
+									</clr-dg-footer>
+								</clr-datagrid>
+
+							</clr-tab-content>
+						</ng-template>
+					</clr-tab>
+
+					<clr-tab>
+						<button clrTabLink>AAPL</button>
+						<ng-template [(clrIfActive)]="managementActive">
+							<clr-tab-content>
+								...
+							</clr-tab-content>
+						</ng-template>
+					</clr-tab>
+
+					<clr-tab>
+						<button clrTabLink>AMAZ</button>
+						<ng-template [(clrIfActive)]="cloudActive">
+							<clr-tab-content>
+								...
+							</clr-tab-content>
+						</ng-template>
+					</clr-tab>
+				</clr-tabs>
+
+			</div>
+		</div>
+	</div>
+	<div class="card">
+		<div class="card-header">
+			GOOGL
+		</div>
+		<div class="card-img">
+			<img src="http://via.placeholder.com/540x200/154360/ffffff/jpg?text=Chart">
+		</div>
+		<div class="card-block">
+			<div class="card-title">
+				Current Stock Info
+			</div>
+			<div class="card-text">
+				<table class="table table-vertical">
+					<tbody>
+					<tr>
+						<th>Open</th>
+						<td>123</td>
+					</tr>
+					<tr>
+						<th>Close</th>
+						<td>321</td>
+					</tr>
+					<tr>
+						<th>High</th>
+						<td>123</td>
+					</tr>
+					<tr>
+						<th>Compact tables</th>
+						<td>.table-compact</td>
+					</tr>
+					<tr>
+						<th>Vertical tables</th>
+						<td>.table-vertical</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="card-footer">
+			<button class="btn btn-sm btn-link">
+				<clr-icon shape="star"></clr-icon>
+				Favorite
+			</button>
+			<button class="btn btn-sm btn-link">
+				<clr-icon shape="trash"></clr-icon>
+				Remove
+			</button>
+		</div>
+	</div>
+	<div class="card">
+		<div class="card-header">
+			AAPL
+		</div>
+		<div class="card-img">
+			<img src="http://via.placeholder.com/540x200/154360/ffffff/jpg?text=Chart">
+		</div>
+		<div class="card-block">
+			<div class="card-title">
+				Current Stock Info
+			</div>
+			<div class="card-text">
+				<table class="table table-vertical">
+					<tbody>
+					<tr>
+						<th>Open</th>
+						<td>123</td>
+					</tr>
+					<tr>
+						<th>Close</th>
+						<td>321</td>
+					</tr>
+					<tr>
+						<th>High</th>
+						<td>123</td>
+					</tr>
+					<tr>
+						<th>Compact tables</th>
+						<td>.table-compact</td>
+					</tr>
+					<tr>
+						<th>Vertical tables</th>
+						<td>.table-vertical</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="card-footer">
+			<button class="btn btn-sm btn-link">
+				<clr-icon shape="star"></clr-icon>
+				Favorite
+			</button>
+			<button class="btn btn-sm btn-link">
+				<clr-icon shape="trash"></clr-icon>
+				Remove
+			</button>
+		</div>
+	</div>
+	<div class="card">
+		<div class="card-header">
+			AMAZ
+		</div>
+		<div class="card-img">
+			<img src="http://via.placeholder.com/540x200/154360/ffffff/jpg?text=Chart">
+		</div>
+		<div class="card-block">
+			<div class="card-title">
+				Current Stock Info
+			</div>
+			<div class="card-text">
+				<table class="table table-vertical">
+					<tbody>
+					<tr>
+						<th>Open</th>
+						<td>123</td>
+					</tr>
+					<tr>
+						<th>Close</th>
+						<td>321</td>
+					</tr>
+					<tr>
+						<th>High</th>
+						<td>123</td>
+					</tr>
+					<tr>
+						<th>Compact tables</th>
+						<td>.table-compact</td>
+					</tr>
+					<tr>
+						<th>Vertical tables</th>
+						<td>.table-vertical</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="card-footer">
+			<button class="btn btn-sm btn-link">
+				<clr-icon shape="star"></clr-icon>
+				Favorite
+			</button>
+			<button class="btn btn-sm btn-link">
+				<clr-icon shape="trash"></clr-icon>
+				Remove
+			</button>
+		</div>
+	</div>
 </section>

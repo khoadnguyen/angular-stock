@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {StockService} from '../../services/stock.service';
-import {single} from './data';
 
 @Component({
   selector: 'app-main-page',
@@ -8,31 +7,86 @@ import {single} from './data';
   styleUrls: ['./main-page.component.css']
 })
 export class MainPageComponent implements OnInit {
+  single = [
+    {
+      "name": "GOOGL",
+      "value": 8940000
+    },
+    {
+      "name": "AAPL",
+      "value": 5000000
+    },
+    {
+      "name": "AMAZ",
+      "value": 7200000
+    }
+  ];
+  multi = [
+    {
+      "name": "GOOGL",
+      "series": [
+        {
+          "name": "2010",
+          "value": 7300000
+        },
+        {
+          "name": "2011",
+          "value": 8940000
+        }
+      ]
+    },
+
+    {
+      "name": "AAPL",
+      "series": [
+        {
+          "name": "2010",
+          "value": 7870000
+        },
+        {
+          "name": "2011",
+          "value": 8270000
+        }
+      ]
+    },
+
+    {
+      "name": "AMAZ",
+      "series": [
+        {
+          "name": "2010",
+          "value": 5000002
+        },
+        {
+          "name": "2011",
+          "value": 5800000
+        }
+      ]
+    }
+  ];
+
   public dataStockDaily = [];
   public open: any;
 
-  single: any[];
-  multi: any[];
-
-  view: any[] = [700, 400];
-
-  // options
+  // NGX View
+  //view: any[];
+  Barview: any[];
+  // NGX Options
   showXAxis = true;
   showYAxis = true;
   gradient = false;
-  showLegend = true;
-  showXAxisLabel = true;
-  xAxisLabel = 'Country';
-  showYAxisLabel = true;
-  yAxisLabel = 'Population';
+  showLegend = false;
+  showXAxisLabel = false;
+  xAxisLabel = 'Stock';
+  showYAxisLabel = false;
+  yAxisLabel = 'Vol.';
 
   colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    domain: ['#A9CCE3', '#2471A3', '#FFFFFF', '#FFFFFF']
   };
 
   constructor(private stock$: StockService) {
-    this.getData();
-    Object.assign(this, {single})
+    this.getData("GOOG");
   }
 
   ngOnInit() {
@@ -40,8 +94,8 @@ export class MainPageComponent implements OnInit {
     // console.log(this.open)
   }
 
-  getData(): void {
-    this.stock$.getData().subscribe(res => {
+  getData(symbol): void {
+    this.stock$.getData(symbol).subscribe(res => {
       let currentItem = res['Time Series (Daily)'];
       for (let val in currentItem) {
         if (currentItem.hasOwnProperty(val)) {
