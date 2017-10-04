@@ -66,7 +66,7 @@ export class MainPageComponent implements OnInit {
   ];
 
   public stocksObject = {};
-  public stocksArray = [];
+  public stocksArray = [ "GOOG", "AAPL", "AMZN" ];
   public open: any;
 
   // Stock Data
@@ -82,22 +82,29 @@ export class MainPageComponent implements OnInit {
   showLegend = false;
   showXAxisLabel = false;
   showYAxisLabel = false;
+  oneActive: boolean;
+  twoActive: boolean;
+  threeActive: boolean;
 
   colorScheme = {
     domain: ['#A9CCE3', '#2471A3', '#FFFFFF', '#FFFFFF']
   };
 
   constructor(private stock$: StockService) {
+    console.log(this.stocksArray)
     this.getData("GOOG");
     this.getData("AAPL");
+    this.getData("AMAZ");
   }
 
   ngOnInit() {
-    // this.open = this.dataStockDaily[0];
+    this.stocksArray.forEach(function(x) {
+      console.log(x);
+    });
   }
 
   getData(symbol:string): void {
-    this.stocksArray.push(symbol);
+    // this.stocksArray.push(symbol);
     this.stock$.getData(symbol).subscribe(res => {
       let currentItem = res['Time Series (Daily)'];
       let currentItemArray = [];
