@@ -9,70 +9,70 @@ import {StockService} from '../../services/stock.service';
 export class MainPageComponent implements OnInit {
   single = [
     {
-      "name": "GOOGL",
-      "value": 8940000
+      'name': 'GOOGL',
+      'value': 8940000
     },
     {
-      "name": "AAPL",
-      "value": 5000000
+      'name': 'AAPL',
+      'value': 5000000
     },
     {
-      "name": "AMAZ",
-      "value": 7200000
+      'name': 'AMAZ',
+      'value': 7200000
     }
   ];
   multi = [
     {
-      "name": "GOOGL",
-      "series": [
+      'name': 'GOOGL',
+      'series': [
         {
-          "name": "2010",
-          "value": 7300000
+          'name': '2010',
+          'value': 7300000
         },
         {
-          "name": "2011",
-          "value": 8940000
+          'name': '2011',
+          'value': 8940000
         }
       ]
     },
 
     {
-      "name": "AAPL",
-      "series": [
+      'name': 'AAPL',
+      'series': [
         {
-          "name": "2010",
-          "value": 7870000
+          'name': '2010',
+          'value': 7870000
         },
         {
-          "name": "2011",
-          "value": 8270000
+          'name': '2011',
+          'value': 8270000
         }
       ]
     },
 
     {
-      "name": "AMAZ",
-      "series": [
+      'name': 'AMAZ',
+      'series': [
         {
-          "name": "2010",
-          "value": 5000002
+          'name': '2010',
+          'value': 5000002
         },
         {
-          "name": "2011",
-          "value": 5800000
+          'name': '2011',
+          'value': 5800000
         }
       ]
     }
   ];
 
   public stocksObject = {};
-  public stocksArray = [ "GOOG", "AAPL", "AMZN" ];
+  public stocksArray = [ 'GOOG', 'AAPL', 'AMZN' ];
   public open: any;
 
-  // Stock Data
+  // Stock Graph Data
+  googLine = [];
 
-
-  // NGX View
+      // NGX View
   Lineview: any[];
   Barview: any[];
   // NGX Options
@@ -90,34 +90,55 @@ export class MainPageComponent implements OnInit {
     domain: ['#A9CCE3', '#2471A3', '#FFFFFF', '#FFFFFF']
   };
 
+  itemMapping: {[k: string]: string} = {'=0': 'No items', '=1': 'One item', 'other': '# items'};
+
   constructor(private stock$: StockService) {
-    console.log(this.stocksArray)
-    this.getData("GOOG");
-    this.getData("AAPL");
-    this.getData("AMAZ");
+    for (const stock in this.stocksArray) {
+      const value = this.stocksArray[stock];
+      this.getData(value);
+    }
+    console.log('Stock Object:', this.stocksObject);
+
+    for (const stockDay in this.stocksObject) {
+      console.log(stockDay)
+    }
+    console.log('Google Graph Array:', this.googLine);
   }
 
   ngOnInit() {
-    this.stocksArray.forEach(function(x) {
-      console.log(x);
-    });
+    /*this.stocksArray.forEach(function(item) {
+      console.log(item);
+      this.getData(item);
+    });*/
   }
 
-  getData(symbol:string): void {
+  getData(symbol: string): void {
     // this.stocksArray.push(symbol);
     this.stock$.getData(symbol).subscribe(res => {
-      let currentItem = res['Time Series (Daily)'];
-      let currentItemArray = [];
-      for (let val in currentItem) {
+      const currentItem = res['Time Series (Daily)'];
+      const currentItemArray = [];
+      for (const val in currentItem) {
         if (currentItem.hasOwnProperty(val)) {
-          currentItem[val]["6. date"] = val;
+          currentItem[val]['6. date'] = Date.parse(val);
           currentItemArray.push(currentItem[val]);
         }
       }
       (this.stocksObject as any)[symbol] = currentItemArray;
+    });
+  }
 
-      // console.log('Stock Array:', this.stockArray);
-      console.log('Stock Object:', this.stocksObject);
+  addData(symbol: string): void {
+    this.stocksArray.push(symbol);
+    this.stock$.getData(symbol).subscribe(res => {
+      const currentItem = res['Time Series (Daily)'];
+      const currentItemArray = [];
+      for (const val in currentItem) {
+        if (currentItem.hasOwnProperty(val)) {
+          currentItem[val]['6. date'] = val;
+          currentItemArray.push(currentItem[val]);
+        }
+      }
+      (this.stocksObject as any)[symbol] = currentItemArray;
     });
   }
 

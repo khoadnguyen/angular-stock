@@ -9,6 +9,6 @@ export class AppComponent {
   title = 'E*Trudite';
 
   constructor(@Inject('API_URL') private url: string) {
-    console.log(this.url);
+    // console.log(this.url);
   }
 }

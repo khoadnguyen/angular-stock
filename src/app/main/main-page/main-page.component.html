@@ -58,7 +58,7 @@
 						<button clrTabLink>GOOGL</button>
 						<ng-template [(clrIfActive)]="oneActive">
 							<clr-tab-content>
-								<clr-datagrid *ngIf="stocksObject.GOOG">
+								<clr-datagrid>
 									<clr-dg-column>Date</clr-dg-column>
 									<clr-dg-column>Open</clr-dg-column>
 									<clr-dg-column>High</clr-dg-column>
@@ -67,18 +67,18 @@
 									<clr-dg-column>Volume</clr-dg-column>
 
 									<clr-dg-row *clrDgItems="let stock of stocksObject.GOOG">
-										<clr-dg-cell>{{stock["6. date"]}}</clr-dg-cell>
-										<clr-dg-cell>{{stock["1. open"]}}</clr-dg-cell>
-										<clr-dg-cell>{{stock["2. high"]}}</clr-dg-cell>
-										<clr-dg-cell>{{stock["3. low"]}}</clr-dg-cell>
-										<clr-dg-cell>{{stock["4. close"]}}</clr-dg-cell>
+										<clr-dg-cell>{{stock["6. date"] | date}}</clr-dg-cell>
+										<clr-dg-cell>{{stock["1. open"] | number:'3.2' }}</clr-dg-cell>
+										<clr-dg-cell>{{stock["2. high"] | number:'3.2'}}</clr-dg-cell>
+										<clr-dg-cell>{{stock["3. low"] | number:'3.2'}}</clr-dg-cell>
+										<clr-dg-cell>{{stock["4. close"] | number:'3.2'}}</clr-dg-cell>
 										<clr-dg-cell>{{stock["5. volume"]}}</clr-dg-cell>
 									</clr-dg-row>
 
 									<clr-dg-footer>
-										{{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-										of {{stocksObject.GOOG.length}} item
-										<clr-dg-pagination #pagination [clrDgPageSize]="5" [clrDgTotalItems]="5"></clr-dg-pagination>
+										{{pagination1.firstItem + 1}} - {{pagination1.lastItem + 1}}
+										of {{pagination1.totalItems | i18nPlural: itemMapping }}
+										<clr-dg-pagination #pagination1 [clrDgPageSize]="5" [clrDgTotalItems]="5"></clr-dg-pagination>
 									</clr-dg-footer>
 								</clr-datagrid>
 							</clr-tab-content>
@@ -89,7 +89,7 @@
 						<button clrTabLink>AAPL</button>
 						<ng-template [(clrIfActive)]="twoActive">
 							<clr-tab-content>
-								<clr-datagrid *ngIf="stocksObject.AAPL">
+								<clr-datagrid>
 									<clr-dg-column>Date</clr-dg-column>
 									<clr-dg-column>Open</clr-dg-column>
 									<clr-dg-column>High</clr-dg-column>
@@ -98,18 +98,18 @@
 									<clr-dg-column>Volume</clr-dg-column>
 
 									<clr-dg-row *clrDgItems="let stock of stocksObject.AAPL">
-										<clr-dg-cell>{{stock["6. date"]}}</clr-dg-cell>
-										<clr-dg-cell>{{stock["1. open"]}}</clr-dg-cell>
-										<clr-dg-cell>{{stock["2. high"]}}</clr-dg-cell>
-										<clr-dg-cell>{{stock["3. low"]}}</clr-dg-cell>
-										<clr-dg-cell>{{stock["4. close"]}}</clr-dg-cell>
+										<clr-dg-cell>{{stock["6. date"] | date}}</clr-dg-cell>
+										<clr-dg-cell>{{stock["1. open"] | number:'3.2' }}</clr-dg-cell>
+										<clr-dg-cell>{{stock["2. high"] | number:'3.2' }}</clr-dg-cell>
+										<clr-dg-cell>{{stock["3. low"] | number:'3.2' }}</clr-dg-cell>
+										<clr-dg-cell>{{stock["4. close"] | number:'3.2' }}</clr-dg-cell>
 										<clr-dg-cell>{{stock["5. volume"]}}</clr-dg-cell>
 									</clr-dg-row>
 
 									<clr-dg-footer>
-										{{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-										of {{stocksObject.GOOG.length}} item
-										<clr-dg-pagination #pagination [clrDgPageSize]="5" [clrDgTotalItems]="5"></clr-dg-pagination>
+										{{pagination2.firstItem + 1}} - {{pagination2.lastItem + 1}}
+										of {{pagination2.totalItems | i18nPlural: itemMapping}}
+										<clr-dg-pagination #pagination2 [clrDgPageSize]="5" [clrDgTotalItems]="5"></clr-dg-pagination>
 									</clr-dg-footer>
 								</clr-datagrid>
 							</clr-tab-content>
@@ -117,10 +117,10 @@
 					</clr-tab>
 
 					<clr-tab>
-						<button clrTabLink>AMAZ</button>
+						<button clrTabLink>AMZN</button>
 						<ng-template [(clrIfActive)]="threeActive">
 							<clr-tab-content>
-								<clr-datagrid *ngIf="stocksObject.AMAZ">
+								<clr-datagrid>
 									<clr-dg-column>Date</clr-dg-column>
 									<clr-dg-column>Open</clr-dg-column>
 									<clr-dg-column>High</clr-dg-column>
@@ -128,19 +128,19 @@
 									<clr-dg-column>Close</clr-dg-column>
 									<clr-dg-column>Volume</clr-dg-column>
 
-									<clr-dg-row *clrDgItems="let stock of stocksObject.AMAZ">
-										<clr-dg-cell>{{stock["6. date"]}}</clr-dg-cell>
-										<clr-dg-cell>{{stock["1. open"]}}</clr-dg-cell>
-										<clr-dg-cell>{{stock["2. high"]}}</clr-dg-cell>
-										<clr-dg-cell>{{stock["3. low"]}}</clr-dg-cell>
-										<clr-dg-cell>{{stock["4. close"]}}</clr-dg-cell>
+									<clr-dg-row *clrDgItems="let stock of stocksObject.AMZN">
+										<clr-dg-cell>{{stock["6. date"] | date }}</clr-dg-cell>
+										<clr-dg-cell>{{stock["1. open"] | number:'3.2' }}</clr-dg-cell>
+										<clr-dg-cell>{{stock["2. high"] | number:'3.2' }}</clr-dg-cell>
+										<clr-dg-cell>{{stock["3. low"] | number:'3.2' }}</clr-dg-cell>
+										<clr-dg-cell>{{stock["4. close"] | number:'3.2' }}</clr-dg-cell>
 										<clr-dg-cell>{{stock["5. volume"]}}</clr-dg-cell>
 									</clr-dg-row>
 
 									<clr-dg-footer>
-										{{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-										of {{stocksObject.GOOG.length}} item
-										<clr-dg-pagination #pagination [clrDgPageSize]="5" [clrDgTotalItems]="5"></clr-dg-pagination>
+										{{pagination3.firstItem + 1}} - {{pagination3.lastItem + 1}}
+										of {{pagination3.totalItems | i18nPlural: itemMapping}}
+										<clr-dg-pagination #pagination3 [clrDgPageSize]="5" [clrDgTotalItems]="5"></clr-dg-pagination>
 									</clr-dg-footer>
 								</clr-datagrid>
 							</clr-tab-content>
@@ -163,11 +163,11 @@
 				Current Stock Info
 			</div>
 			<div class="card-text">
-				<table class="table table-vertical">
+				<table class="table table-vertical" *ngIf="stocksObject">
 					<tbody>
 					<tr>
 						<th>Open</th>
-						<td>123</td>
+						<td></td>
 					</tr>
 					<tr>
 						<th>Close</th>
@@ -251,7 +251,7 @@
 	</div>
 	<div class="card">
 		<div class="card-header">
-			AMAZ
+			AMZN
 		</div>
 		<div class="card-img">
 			<img src="http://via.placeholder.com/540x200/154360/ffffff/jpg?text=Chart">
