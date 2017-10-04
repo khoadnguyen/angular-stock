@@ -65,11 +65,15 @@ export class MainPageComponent implements OnInit {
     }
   ];
 
-  public dataStockDaily = [];
+  public stocksObject = {};
+  public stocksArray = [];
   public open: any;
 
+  // Stock Data
+
+
   // NGX View
-  //view: any[];
+  Lineview: any[];
   Barview: any[];
   // NGX Options
   showXAxis = true;
@@ -77,9 +81,7 @@ export class MainPageComponent implements OnInit {
   gradient = false;
   showLegend = false;
   showXAxisLabel = false;
-  xAxisLabel = 'Stock';
   showYAxisLabel = false;
-  yAxisLabel = 'Vol.';
 
   colorScheme = {
     domain: ['#A9CCE3', '#2471A3', '#FFFFFF', '#FFFFFF']
@@ -87,25 +89,28 @@ export class MainPageComponent implements OnInit {
 
   constructor(private stock$: StockService) {
     this.getData("GOOG");
+    this.getData("AAPL");
   }
 
   ngOnInit() {
-    this.open = this.dataStockDaily[0];
-    // console.log(this.open)
+    // this.open = this.dataStockDaily[0];
   }
 
-  getData(symbol): void {
+  getData(symbol:string): void {
+    this.stocksArray.push(symbol);
     this.stock$.getData(symbol).subscribe(res => {
       let currentItem = res['Time Series (Daily)'];
+      let currentItemArray = [];
       for (let val in currentItem) {
         if (currentItem.hasOwnProperty(val)) {
           currentItem[val]["6. date"] = val;
-          // console.log(currentItem[val]);
-          // this.dataStockDaily.push(val);
-          this.dataStockDaily.push(currentItem[val]);
+          currentItemArray.push(currentItem[val]);
         }
       }
-      // console.log(this.dataStockDaily);
+      (this.stocksObject as any)[symbol] = currentItemArray;
+
+      // console.log('Stock Array:', this.stockArray);
+      console.log('Stock Object:', this.stocksObject);
     });
   }
 
