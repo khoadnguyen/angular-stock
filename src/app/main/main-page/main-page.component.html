@@ -1,5 +1,5 @@
 <h1>Dashboard</h1>
-<button class="btn btn-primary btn-group-right">
+<button class="btn btn-primary btn-group-right" (click)="opened = true">
 	<clr-icon shape="plus" class="is-solid"></clr-icon>
 	Add
 </button>
@@ -13,20 +13,21 @@
 			<div class="card-text">
 				<p>Praesent malesuada nibh ac imperdiet interdum. Etiam gravida, lorem a porta consectetur, purus purus vulputate odio, a pellentesque sapien ex posuere nunc. Integer eleifend fermentum enim, ac suscipit eros ullamcorper non. In ac ligula eu risus gravida posuere. Maecenas viverra enim sed commodo finibus. Duis odio lacus, finibus a mauris vitae, imperdiet consectetur orci. Fusce convallis eros odio, vel auctor magna molestie ut.</p>
 				<p>Maecenas elit risus, ultrices eget tempus in, efficitur at augue. Donec laoreet augue vitae arcu interdum tristique. Cras mollis libero quam, et suscipit mauris scelerisque finibus. Etiam maximus purus eu fermentum tristique. Proin ultricies tellus orci, ut varius felis volutpat vel. Aliquam purus dui, auctor eu posuere ut, congue porta diam. Nulla eu orci eget erat scelerisque fermentum at id ex.</p>
-				<clr-modal [(clrModalOpen)]="basic">
-					<h3 class="modal-title">I have a nice title</h3>
+				<clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="true">
+					<h3 class="modal-title">Add a new Stock</h3>
 					<div class="modal-body">
-						<p>But not much to say...</p>
+						<input type="text" id="addStock" placeholder="Stock Ticker Symbol">
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-outline" (click)="basic = false">Cancel</button>
-						<button type="button" class="btn btn-primary" (click)="basic = false">Ok</button>
+						<button type="button" class="btn btn-outline" (click)="opened = false">Cancel</button>
+						<button type="button" class="btn btn-primary" (click)="opened = false">Ok</button>
 					</div>
+					<div class="modal-backdrop fade in" aria-hidden="true"></div>
 				</clr-modal>
 			</div>
 		</div>
 		<div class="card-footer">
-			<button class="btn btn-sm btn-link">
+			<button class="btn btn-sm btn-link" (click)="opened = true">
 				<clr-icon shape="plus" class="is-solid"></clr-icon>
 				Add New Stock
 			</button>
@@ -240,7 +241,7 @@
 		</div>
 		<div class="card-footer">
 			<button class="btn btn-sm btn-link">
-				<clr-icon shape="star"></clr-icon>
+				<clr-icon shape="star" class="is-solid"></clr-icon>
 				Favorite
 			</button>
 			<button class="btn btn-sm btn-link">

@@ -35,7 +35,6 @@ export class MainPageComponent implements OnInit {
         }
       ]
     },
-
     {
       'name': 'AAPL',
       'series': [
@@ -49,7 +48,6 @@ export class MainPageComponent implements OnInit {
         }
       ]
     },
-
     {
       'name': 'AMAZ',
       'series': [
@@ -67,7 +65,7 @@ export class MainPageComponent implements OnInit {
 
   public stocksObject = {};
   public stocksArray = [ 'GOOG', 'AAPL', 'AMZN' ];
-  public open: any;
+  public opened: boolean;
 
   // Stock Graph Data
   googLine = [];
