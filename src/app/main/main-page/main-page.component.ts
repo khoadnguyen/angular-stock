@@ -63,16 +63,17 @@ export class MainPageComponent implements OnInit {
     }
   ];
 
-  public stocksObject = {};
-  public stocksArray = [ 'GOOG', 'AAPL', 'AMZN' ];
-  public opened: boolean;
+  stocksObject = {};
+  stocksArray = [ 'GOOG', 'AAPL', 'AMZN' ];
+  opened: boolean;
 
   // Stock Graph Data
   googLine = [];
 
-      // NGX View
+  // NGX View
   Lineview: any[];
   Barview: any[];
+
   // NGX Options
   showXAxis = true;
   showYAxis = true;
@@ -91,23 +92,16 @@ export class MainPageComponent implements OnInit {
   itemMapping: {[k: string]: string} = {'=0': 'No items', '=1': 'One item', 'other': '# items'};
 
   constructor(private stock$: StockService) {
+
+  }
+
+  ngOnInit() {
     for (const stock in this.stocksArray) {
       const value = this.stocksArray[stock];
       this.getData(value);
     }
     console.log('Stock Object:', this.stocksObject);
-
-    for (const stockDay in this.stocksObject) {
-      console.log(stockDay)
-    }
     console.log('Google Graph Array:', this.googLine);
-  }
-
-  ngOnInit() {
-    /*this.stocksArray.forEach(function(item) {
-      console.log(item);
-      this.getData(item);
-    });*/
   }
 
   getData(symbol: string): void {

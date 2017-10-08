@@ -11,6 +11,7 @@ import {NgxChartsModule} from '@swimlane/ngx-charts';
 import {LayoutComponent} from './layout/layout.component';
 import {MainPageComponent} from './main-page/main-page.component';
 import {AboutPageComponent} from './about-page/about-page.component';
+import {StockCardComponent} from '../shared/stock-card/stock-card.component';
 
 import {MainService} from './main.service';
 import {AlertService} from '../alert.service';
@@ -28,7 +29,7 @@ import {NewsService} from '../services/news.service';
     AuthModule,
     NgxChartsModule
   ],
-  declarations: [MainPageComponent, LayoutComponent, AboutPageComponent],
+  declarations: [MainPageComponent, LayoutComponent, AboutPageComponent, StockCardComponent],
   providers: [
     MainService,
     AlertService,
