@@ -43,7 +43,7 @@ export class LoginPageComponent implements OnInit {
         sessionStorage.setItem('token', token);
         sessionStorage.setItem('fullname', fullname);
         // hide spinner
-        this.isLogging = false;
+        this.isLogging = true;
         // redirect to main module
         this.router.navigate(['main']);
       } else {

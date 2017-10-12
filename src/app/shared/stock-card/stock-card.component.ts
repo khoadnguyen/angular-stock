@@ -17,14 +17,14 @@ export class StockCardComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log('Changes', changes.stocksObject.currentValue)
+    console.log('Changes', changes)
+    //console.log(this.stocksObject)
   }
   ngOnInit() {
-
-    console.log(this.stocksObject.AAPL)
+  /* console.log(this.stocksObject)
     console.log('Symbol', this.symbol)
     console.log('Child Stocks', this.stocksObject)
-    console.log('This Card Stocks', this.stockCardData)
+    console.log('This Card Stocks', this.stockCardData)*/
 
   }
 

@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Http} from "@angular/http";
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs/Observable";
+import 'rxjs/add/observable/forkJoin';
 
 @Injectable()
 export class StockService {
@@ -12,14 +13,24 @@ export class StockService {
   private apiSm: string = "compact";
   private apiInterval: number = 60;
   private apiUrl: string = "//www.alphavantage.co/query?function=";
+  private stockApiUrl: string = "";
   public dataStockDaily: any;
 
   constructor(private http: Http) {
   }
 
-  getData(symbol:string) {
-    return this.http.get(this.apiUrl + this.apiType + "&symbol=" + symbol + "&outputsize=" + this.apiSm + "&apikey=" + this.apiKey)
+  getData(stocks: any): Observable<any> {
+    if (typeof stocks === 'string') {
+      return this.http.get(this.apiUrl + this.apiType + "&symbol=" + stocks + "&outputsize=" + this.apiSm + "&apikey=" + this.apiKey)
         .map(res => res.json());
+    } else {
+      return Observable.forkJoin(
+        stocks.map(
+          stock => this.http.get(this.apiUrl + this.apiType + "&symbol=" + stock + "&outputsize=" +
+            this.apiSm + "&apikey=" + this.apiKey)
+            .map(res => res.json())
+        ))
+    }
   }
 
 }

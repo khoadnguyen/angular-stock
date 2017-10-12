@@ -4,6 +4,7 @@ h1 {
 .btn-group-right {
   position: relative;
   margin-top: -50px;
+  float: right;
 }
 .main-content {
   grid-template-columns: 1fr;

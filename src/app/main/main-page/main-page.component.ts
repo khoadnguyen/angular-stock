@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnChanges, SimpleChanges} from '@angular/core';
 import {StockService} from '../../services/stock.service';
 
 @Component({
@@ -6,7 +6,7 @@ import {StockService} from '../../services/stock.service';
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.css']
 })
-export class MainPageComponent implements OnInit {
+export class MainPageComponent implements OnInit, OnChanges {
   single = [
     {
       'name': 'GOOGL',
@@ -67,9 +67,6 @@ export class MainPageComponent implements OnInit {
   stocksArray = [ 'GOOG', 'AAPL', 'AMZN' ];
   opened: boolean;
 
-  // Stock Graph Data
-  googLine = [];
-
   // NGX View
   Lineview: any[];
   Barview: any[];
@@ -92,46 +89,58 @@ export class MainPageComponent implements OnInit {
   itemMapping: {[k: string]: string} = {'=0': 'No items', '=1': 'One item', 'other': '# items'};
 
   constructor(private stock$: StockService) {
-
   }
 
   ngOnInit() {
-    for (const stock in this.stocksArray) {
-      const value = this.stocksArray[stock];
-      this.getData(value);
-    }
-    console.log('Stock Object:', this.stocksObject);
-    console.log('Google Graph Array:', this.googLine);
-  }
-
-  getData(symbol: string): void {
-    // this.stocksArray.push(symbol);
-    this.stock$.getData(symbol).subscribe(res => {
-      const currentItem = res['Time Series (Daily)'];
-      const currentItemArray = [];
-      for (const val in currentItem) {
-        if (currentItem.hasOwnProperty(val)) {
-          currentItem[val]['6. date'] = Date.parse(val);
-          currentItemArray.push(currentItem[val]);
+    //this.stock$.getData('GM').subscribe( res => console.log('Single Stock:', res))
+    this.stock$.getData(this.stocksArray).subscribe(
+      res => {
+        for (var i = 0; i < res.length; i++) {
+          let currentItem = res[i]['Time Series (Daily)'];
+          let currentSymbol = res[i]['Meta Data']['2. Symbol'];
+          let currentItemArray = [];
+          //console.log('Current Symbol:', currentSymbol)
+          //console.log('Response:', res[i]);
+          for (let val in currentItem) {
+            if (currentItem.hasOwnProperty(val)) {
+              currentItem[val]['6. date'] = val;
+              currentItemArray.push(currentItem[val]);
+            }
+          }
+          //console.log('Current Array:', currentItemArray);
+          (this.stocksObject as any)[currentSymbol] = currentItemArray;
         }
-      }
-      (this.stocksObject as any)[symbol] = currentItemArray;
-    });
+        console.log('Stocks Object: ', this.stocksObject)
+      },
+      error => console.log('Error:', error)
+    )
   }
 
-  addData(symbol: string): void {
+  ngOnChanges(changes: SimpleChanges) {
+    console.log('Changes', changes)
+  }
+
+  addStock(symbol: string): void {
     this.stocksArray.push(symbol);
-    this.stock$.getData(symbol).subscribe(res => {
-      const currentItem = res['Time Series (Daily)'];
-      const currentItemArray = [];
-      for (const val in currentItem) {
+    this.stock$.getData(symbol).subscribe(
+      res => {
+      let currentItem = res['Time Series (Daily)'];
+      let currentItemArray = [];
+      for (let val in currentItem) {
         if (currentItem.hasOwnProperty(val)) {
           currentItem[val]['6. date'] = val;
           currentItemArray.push(currentItem[val]);
         }
       }
       (this.stocksObject as any)[symbol] = currentItemArray;
-    });
+    },
+        error => console.log('Error:', error)
+    )
+    console.log('Updated Object: ', this.stocksObject)
+  }
+
+  removeStock(symbol: string): void {
+
   }
 
   onSelect(event) {

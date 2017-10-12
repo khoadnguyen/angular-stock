@@ -1,0 +1,50 @@
+{
+  "name": "Stock",
+  "plural": "Stocks",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "symbol": {
+      "type": "string",
+      "required": true
+    },
+    "name": {
+      "type": "string"
+    },
+    "currentValue": {
+      "type": "number",
+      "required": true
+    },
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "open": {
+      "type": "number",
+      "required": true
+    },
+    "close": {
+      "type": "number",
+      "required": true
+    },
+    "high": {
+      "type": "number",
+      "required": true
+    },
+    "low": {
+      "type": "number",
+      "required": true
+    },
+    "volume": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

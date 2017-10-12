@@ -1,0 +1,31 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "mongo": {
+    "host": "",
+    "port": 0,
+    "url": "",
+    "database": "",
+    "password": "",
+    "name": "mongo",
+    "user": "",
+    "connector": "mongodb"
+  },
+  "alphavantage": {
+    "name": "alphavantage",
+    "baseURL": "https://www.alphavantage.co/query",
+    "crud": true,
+    "connector": "rest",
+    "operations": [{
+      "template": {
+        "method": "GET",
+        "url": "/query"
+      },
+      "functions":{
+        "find": ["username", "password"]
+      }
+    }]
+  }
+}
