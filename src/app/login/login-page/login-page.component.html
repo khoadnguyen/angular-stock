@@ -24,6 +24,7 @@
 					</span>
         </div>
         <button type="button" (click)="doLogin()" class="btn btn-primary" [disabled]="!username || !password || isLogging">LOG IN</button>
+        <a routerLink="/register" routerLinkActive="active" class="signup">Register for an account</a>
       </div>
     </form>
   </div>

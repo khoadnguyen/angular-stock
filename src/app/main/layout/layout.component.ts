@@ -10,9 +10,6 @@ import {StockService} from '../../services/stock.service';
 export class LayoutComponent implements OnInit {
 
   public fullname: string;
-  public dataStockDaily = [];
-  private collapsible: boolean = true;
-  private collapsed: boolean = true;
 
   constructor(private router: Router, private stock$: StockService) {
     this.fullname = sessionStorage.getItem('fullname');

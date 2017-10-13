@@ -20,6 +20,18 @@ export class LoginService {
     });
   }
 
+  doRegister(user: object) {
+    return new Promise((resolve, reject) => {
+      this.http.post(`${this.url}/register`, user)
+          .map(res => res.json())
+          .subscribe(data => {
+            resolve(data);
+          }, error => {
+            reject(error);
+          });
+    });
+  }
+
   testLogin(username: string, password: string) {
     return new Promise((resolve, reject) => {
       if (username === 'admin' && password === 'admin') {

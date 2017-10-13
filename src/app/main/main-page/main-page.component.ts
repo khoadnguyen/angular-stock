@@ -88,8 +88,7 @@ export class MainPageComponent implements OnInit, OnChanges {
 
   itemMapping: {[k: string]: string} = {'=0': 'No items', '=1': 'One item', 'other': '# items'};
 
-  constructor(private stock$: StockService) {
-  }
+  constructor(private stock$: StockService) {}
 
   ngOnInit() {
     //this.stock$.getData('GM').subscribe( res => console.log('Single Stock:', res))

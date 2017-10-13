@@ -16,9 +16,9 @@ export class LoginPageComponent implements OnInit {
   jwtHelper: JwtHelper = new JwtHelper();
   isLogging = false;
 
-  constructor(private loginService: LoginService,
-              private router: Router,
-              private alert: AlertService) {
+  constructor(private login$: LoginService,
+              private alert$: AlertService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -35,7 +35,7 @@ export class LoginPageComponent implements OnInit {
 
     try {
       this.isLogging = true;
-      const token: any = await this.loginService.testLogin(this.username, this.password);
+      const token: any = await this.login$.testLogin(this.username, this.password);
       if (token) {
         const decodedToken = this.jwtHelper.decodeToken(token);
         const fullname = `${decodedToken.firstname} ${decodedToken.lastname}`;
@@ -48,11 +48,11 @@ export class LoginPageComponent implements OnInit {
         this.router.navigate(['main']);
       } else {
         this.isLogging = false;
-        this.alert.error('Pleas enter valid login');
+        this.alert$.error('Pleas enter valid login');
       }
     } catch (error) {
       this.isLogging = false;
-      this.alert.error(error.message);
+      this.alert$.error(error.message);
     }
   }
 }
