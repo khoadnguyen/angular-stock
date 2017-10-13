@@ -12,11 +12,11 @@ import {AlertService} from '../../alert.service';
 })
 export class RegisterComponent implements OnInit {
   @ViewChild("wizardmd") wizardMedium: Wizard;
-  private mdOpen: boolean = true;
+  public mdOpen: boolean = true;
   private user: object = {};
   private isLogging = false;
 
-  private signup = {
+  public signup = {
     firstName: '',
     lastName: '',
     email: '',

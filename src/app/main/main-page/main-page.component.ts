@@ -66,6 +66,7 @@ export class MainPageComponent implements OnInit, OnChanges {
   stocksObject = {};
   stocksArray = [ 'GOOG', 'AAPL', 'AMZN' ];
   opened: boolean;
+  fullname: string;
 
   // NGX View
   Lineview: any[];
