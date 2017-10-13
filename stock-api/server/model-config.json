@@ -35,8 +35,12 @@
     "dataSource": "db",
     "public": false
   },
-  "Stock": {
-    "dataSource": "mongo",
+  "stock": {
+    "dataSource": "mongodb",
+    "public": true
+  },
+  "stock-day": {
+    "dataSource": "mongodb",
     "public": true
   }
 }

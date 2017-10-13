@@ -1,0 +1,29 @@
+{
+  "name": "stock",
+  "plural": "stocks",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "symbol": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "stock-days": {
+      "type": "hasMany",
+      "model": "stock-day",
+      "foreignKey": "symbol"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

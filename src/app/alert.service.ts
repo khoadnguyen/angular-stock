@@ -7,7 +7,7 @@ export class AlertService {
   constructor() {
   }
 
-  error(text = 'Error') {
+  error(text = 'Oh no something went wrong.') {
 
     const option: SweetAlertOptions = {
       title: 'Error',
@@ -19,7 +19,7 @@ export class AlertService {
 
   }
 
-  success(title = 'Success', text = '') {
+  success(title = 'Success', text = 'Great! This was successful.') {
 
     const option: SweetAlertOptions = {
       title: title,
@@ -46,7 +46,7 @@ export class AlertService {
 
   }
 
-  confirm(text = 'Are you sure?',) {
+  confirm(text = 'Are you sure?') {
     const option: SweetAlertOptions = {
       title: 'Are you sure?',
       text: text,

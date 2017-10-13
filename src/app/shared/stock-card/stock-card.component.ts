@@ -17,8 +17,8 @@ export class StockCardComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log('Changes', changes)
-    //console.log(this.stocksObject)
+    // console.log('Changes', changes)
+    // console.log(this.stocksObject)
   }
   ngOnInit() {
   /* console.log(this.stocksObject)

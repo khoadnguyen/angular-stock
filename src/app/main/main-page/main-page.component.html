@@ -149,7 +149,7 @@
 <clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="true">
 	<h3 class="modal-title">Add a new Stock</h3>
 	<div class="modal-body">
-		<input type="text" id="addStock" #stockInput (keyup.enter)="addStock(stockInput.value); opened = false; stockInput.value =''" placeholder="Stock Ticker Symbol">
+		<input type="text" id="addStock" #stockInput (input)="stockInput.value=$event.target.value.toUpperCase()" (keyup.enter)="addStock(stockInput.value); opened = false; stockInput.value =''" placeholder="Stock Ticker Symbol">
 	</div>
 	<div class="modal-footer">
 		<button type="button" class="btn btn-outline" (click)="opened = false">Cancel</button>

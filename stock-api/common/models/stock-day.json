@@ -1,6 +1,6 @@
 {
-  "name": "Stock",
-  "plural": "Stocks",
+  "name": "stock-day",
+  "plural": "stock-days",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -11,32 +11,21 @@
       "type": "string",
       "required": true
     },
-    "name": {
-      "type": "string"
-    },
-    "currentValue": {
-      "type": "number",
-      "required": true
-    },
     "date": {
       "type": "date",
       "required": true
     },
     "open": {
-      "type": "number",
-      "required": true
+      "type": "number"
     },
     "close": {
-      "type": "number",
-      "required": true
+      "type": "number"
     },
     "high": {
-      "type": "number",
-      "required": true
+      "type": "number"
     },
     "low": {
-      "type": "number",
-      "required": true
+      "type": "number"
     },
     "volume": {
       "type": "number",
@@ -44,7 +33,13 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "stock": {
+      "type": "belongsTo",
+      "model": "stock",
+      "foreignKey": "symbol"
+    }
+  },
   "acls": [],
   "methods": {}
 }
