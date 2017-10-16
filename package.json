@@ -6,6 +6,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "deploy": "pm2 start http-server --name stock-app -- dist -p 80",
     "test": "ng test",
     "lint": "ng lint",
     "database": "mongod --config /Users/Khoa/Server/MongoDB/data/stock-db/mongod.conf",
