@@ -1,30 +1,35 @@
 {
-  "name": "stock",
-  "plural": "stocks",
-  "base": "PersistedModel",
+  "name": "app-user",
+  "plural": "app-users",
+  "base": "User",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "name": {
+    "email": {
       "type": "string",
       "required": true
     },
-    "symbol": {
+    "firstName": {
       "type": "string",
       "required": true
     },
-    "isFave": {
-      "type": "boolean"
+    "lastName": {
+      "type": "string",
+      "required": true
+    },
+    "username": {
+      "type": "string",
+      "required": true
     }
   },
   "validations": [],
   "relations": {
-    "stock-days": {
+    "stocks": {
       "type": "hasMany",
-      "model": "stock-day",
-      "foreignKey": "symbol"
+      "model": "stock",
+      "foreignKey": ""
     }
   },
   "acls": [],

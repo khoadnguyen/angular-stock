@@ -8,7 +8,7 @@
     </div>
   </clr-header>
   <div class="register-wrapper">
-    <clr-wizard #wizardlg [(clrWizardOpen)]="mdOpen" clrWizardSize="lg" [clrWizardClosable]="false" (clrWizardOnFinish)="doRegister()" novalidate>
+    <clr-wizard #wizardlg [(clrWizardOpen)]="mdOpen" clrWizardSize="lg" [clrWizardClosable]="false" (clrWizardOnCancel)="doCancel()" (clrWizardOnFinish)="doRegister()" novalidate>
       <clr-wizard-title>Registration</clr-wizard-title>
 
       <clr-wizard-button [type]="'cancel'" routerLink="/login" routerLinkActive="active">Cancel</clr-wizard-button>

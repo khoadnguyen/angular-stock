@@ -34,7 +34,7 @@
   },
   "validations": [],
   "relations": {
-    "stock": {
+    "stockOwner": {
       "type": "belongsTo",
       "model": "stock",
       "foreignKey": "symbol"

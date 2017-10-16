@@ -13,7 +13,6 @@ import {environment} from '../environments/environment';
 
 import {LoginModule} from './login/login.module';
 import {AdminModule} from './main/admin.module';
-import {AuthGuard} from './auth-guard.service';
 import {AlertService} from './alert.service';
 
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
@@ -35,7 +34,6 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
     NgxChartsModule
   ],
   providers: [
-    AuthGuard,
     AlertService,
     {provide: 'API_URL', useValue: environment.apiUrl},
     {provide: LocationStrategy, useClass: HashLocationStrategy}

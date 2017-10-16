@@ -3,7 +3,6 @@ import {Router} from '@angular/router'
 
 import {LoginService} from '../login.service';
 import {AlertService} from '../../alert.service';
-import {JwtHelper} from 'angular2-jwt';
 
 @Component({
   selector: 'app-login-page',
@@ -13,7 +12,6 @@ import {JwtHelper} from 'angular2-jwt';
 export class LoginPageComponent implements OnInit {
   username: string;
   password: string;
-  jwtHelper: JwtHelper = new JwtHelper();
   isLogging = false;
 
   constructor(private login$: LoginService,
@@ -32,24 +30,20 @@ export class LoginPageComponent implements OnInit {
   }
 
   async doLogin() {
-
+    const user = { username: this.username, password: this.password };
     try {
       this.isLogging = true;
-      const token: any = await this.login$.testLogin(this.username, this.password);
-      if (token) {
-        const decodedToken = this.jwtHelper.decodeToken(token);
-        const fullname = `${decodedToken.firstname} ${decodedToken.lastname}`;
-
-        sessionStorage.setItem('token', token);
-        sessionStorage.setItem('fullname', fullname);
-        // hide spinner
-        this.isLogging = true;
-        // redirect to main module
-        this.router.navigate(['main']);
-      } else {
-        this.isLogging = false;
-        this.alert$.error('Pleas enter valid login');
-      }
+      await this.login$.doLogin(user).subscribe(
+        res => {
+          this.isLogging = true;
+          // redirect to main module
+          this.router.navigate(['main']);
+        },
+        error => {
+          this.isLogging = false;
+          this.alert$.error(error);
+        }
+      );
     } catch (error) {
       this.isLogging = false;
       this.alert$.error(error.message);

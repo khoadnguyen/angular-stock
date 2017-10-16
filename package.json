@@ -8,6 +8,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
+    "database": "mongod --config /Users/Khoa/Server/MongoDB/data/stock-db/mongod.conf",
+    "api": "node stock-api/server/server.js",
     "e2e": "ng e2e"
   },
   "private": true,

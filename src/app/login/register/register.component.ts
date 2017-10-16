@@ -32,13 +32,17 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
+  doCancel() {
+    this.router.navigate(['login']);
+  }
+
   async doRegister() {
   console.log('Trying to register!');
     try {
       this.isLogging = true;
       const res: any = await this.login$.doRegister(this.user);
       if (res) {
-        console.log('Got a response from the login service!')
+        console.log('Got a response from the register service!')
         // hide spinner
         this.isLogging = true;
         // redirect to main module

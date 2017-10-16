@@ -9,9 +9,7 @@ import {CardData} from './stock-card.model';
 export class StockCardComponent implements OnInit, OnChanges {
 
   @Input() symbol: string;
-  @Input() stocksObject: any;
-  public currentStock: CardData;
-  public stockCardData: any;
+  @Input() stockData: any;
 
   constructor() {
   }
@@ -19,12 +17,12 @@ export class StockCardComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     // console.log('Changes', changes)
     // console.log(this.stocksObject)
+    console.log('This Card Stocks', changes.stockData.currentValue)
   }
   ngOnInit() {
-  /* console.log(this.stocksObject)
-    console.log('Symbol', this.symbol)
-    console.log('Child Stocks', this.stocksObject)
-    console.log('This Card Stocks', this.stockCardData)*/
+    // console.log(this.stocksObject)
+    // console.log('Symbol', this.symbol)
+    // console.log('Child Stocks', this.stocksObject)
 
   }
 

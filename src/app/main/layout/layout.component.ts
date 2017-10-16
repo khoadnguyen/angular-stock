@@ -11,9 +11,7 @@ export class LayoutComponent implements OnInit {
 
   public fullname: string;
 
-  constructor(private router: Router, private stock$: StockService) {
-    this.fullname = sessionStorage.getItem('fullname');
-  }
+  constructor(private router: Router, private stock$: StockService) {}
 
   logout() {
     sessionStorage.removeItem('token');
@@ -22,6 +20,7 @@ export class LayoutComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.fullname = sessionStorage.getItem('fullname');
   }
 
 }

@@ -42,5 +42,9 @@
   "stock-day": {
     "dataSource": "mongodb",
     "public": true
+  },
+  "app-user": {
+    "dataSource": "mongodb",
+    "public": true
   }
 }

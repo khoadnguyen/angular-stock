@@ -136,7 +136,7 @@ export class MainPageComponent implements OnInit, OnChanges {
     },
         error => console.log('Error:', error)
     )
-    console.log('Updated Object: ', this.stocksObject)
+    console.log('Updated Object: ')
   }
 
   removeStock(symbol: string): void {
