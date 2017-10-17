@@ -9,7 +9,7 @@
     "deploy": "pm2 start http-server --name stock-app -- dist -p 80",
     "test": "ng test",
     "lint": "ng lint",
-    "database": "mongod --config /Users/Khoa/Server/MongoDB/data/stock-db/mongod.conf",
+    "database": "mongod --config /Database/mongodb/data/db/mongod.conf",
     "api": "node stock-api/server/server.js",
     "e2e": "ng e2e"
   },

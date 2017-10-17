@@ -11,18 +11,18 @@ module.exports = function(Stockday) {
     var results;
 
     try {
-      let stockQuery = await StockService.data(stockTicker)
-      var dateData = stockQuery[0]['Time Series (Daily)'];
-      var newData;
-      Object.keys(dateData).forEach(function(key,index) {
-        Object.keys(dateData[key]).forEach(function(innerkey, innerindex) {
-          if(innerkey === '1. open'){
-            newData[key].open =
-          }
-
-        });
-
-      });
+      let stockQuery = await StockService.data(stockTicker);
+      var dateData = stockQuery[0];
+/*      var newData;
+      Object.keys(dateData).forEach(function (key, index) {
+        if (index < 10) {
+          Object.keys(dateData[key]).forEach(function (innerkey, innerindex) {
+            if (innerkey === '1. open') {
+              console.log(dateData[key][innerkey])
+            }
+          })
+        }
+      });*/
 
       results = dateData;
     }
@@ -40,7 +40,8 @@ module.exports = function(Stockday) {
       },
       accepts: {arg: 'stockTicker', type: 'string', http: { source: 'query' } },
       returns: {
-        arg: 'dates'
+        arg: 'dates',
+        type: 'array'
       }
     });
 

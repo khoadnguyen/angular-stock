@@ -1,11 +1,11 @@
-# Clarity and Angular 4 seed template
+# Stock App using AlphaVantage
 
 ## Installation
 
 ```
-git clone https://github.com/siteslave/clarity-angular4-web.git
+git clone https://github.com/khoadnguyen/SSF-Angular-Stock.git
 
-cd clarity-angular4-web
+cd ssf-angular-stock
 
 npm i
 ```
@@ -19,6 +19,22 @@ ng serve
 app url `http://localhost:4200`  
 
 username: `admin` and password: `admin`
+
+## Running mongo
+
+```
+npm run database
+```
+
+## Running api
+
+```
+npm run api
+```
+
+app url `http://localhost:3000/explorer/`  
+
+
 ## Building
 
 ```
