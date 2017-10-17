@@ -4,7 +4,7 @@ module.exports = function(Appuser) {
 
   Appuser.afterRemote('login', async (ctx, user, next) => {
     if(user){
-      console.log("hit")
+      // console.log("hit")
       user.token = user.id;
 
       let userData = await Appuser.find({

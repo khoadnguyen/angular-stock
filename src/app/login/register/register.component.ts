@@ -15,12 +15,13 @@ export class RegisterComponent implements OnInit {
   public mdOpen: boolean = true;
   private user: object = {};
   private isLogging = false;
+  public vemail: string;
 
   public signup = {
     firstName: '',
     lastName: '',
     email: '',
-    vemail: '',
+    emailVerified: false,
     username: '',
     password: ''
   };
@@ -37,20 +38,27 @@ export class RegisterComponent implements OnInit {
   }
 
   async doRegister() {
-  console.log('Trying to register!');
+    console.log('Attempting to register')
+    if(this.vemail === this.signup.email) {
+      this.signup.emailVerified = true;
+      console.log(this.signup);
+    }
     try {
       this.isLogging = true;
-      const res: any = await this.login$.doRegister(this.user);
-      if (res) {
-        console.log('Got a response from the register service!')
-        // hide spinner
-        this.isLogging = true;
-        // redirect to main module
-        this.router.navigate(['main']);
-      } else {
-        this.isLogging = false;
-        this.alert$.error('Pleas enter valid registration info');
-      }
+      await this.login$.doRegister(this.signup).subscribe(
+        res => {
+          this.isLogging = true;
+          // redirect to main module
+          console.log('Response', res)
+          // sessionStorage.setItem('userData', JSON.stringify(res.userData));
+          // this.router.navigate(['main']);
+        },
+        error => {
+          this.isLogging = false;
+          this.alert$.error(error);
+
+        }
+      );
     } catch (error) {
       this.isLogging = false;
       this.alert$.error(error.message);

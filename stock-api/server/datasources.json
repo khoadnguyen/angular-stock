@@ -12,5 +12,21 @@
     "name": "mongodb",
     "user": "",
     "connector": "mongodb"
+  },
+  "StockService": {
+    "name": "StockService",
+    "connector": "rest",
+    "operations": [
+      {
+        "template": {
+          "method": "GET",
+          "url": "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=GOOG&outputsize=compact&apikey=8R3ATDA4Z6HXHRCC&datatype=json",
+          "responsePath": "$"
+        },
+        "functions": {
+          "data": {}
+        }
+      }
+    ]
   }
 }

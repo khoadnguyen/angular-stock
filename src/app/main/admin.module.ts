@@ -17,7 +17,7 @@ import {MainService} from './main.service';
 import {AlertService} from '../alert.service';
 import {StockService} from '../services/stock.service';
 import {NewsService} from '../services/news.service';
-
+import {UserService} from '../services/user.service';
 
 @NgModule({
   imports: [
@@ -30,12 +30,7 @@ import {NewsService} from '../services/news.service';
     NgxChartsModule
   ],
   declarations: [MainPageComponent, LayoutComponent, AboutPageComponent, StockCardComponent],
-  providers: [
-    MainService,
-    AlertService,
-    StockService,
-    NewsService,
-  ]
+  providers: [MainService, AlertService, StockService, NewsService, UserService]
 })
 export class AdminModule {
 }

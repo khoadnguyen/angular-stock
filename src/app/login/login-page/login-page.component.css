@@ -2,3 +2,7 @@
   flex-direction: column;
   flex: 1;
 }
+
+.login-wrapper .login {
+  min-height: 100%;
+}

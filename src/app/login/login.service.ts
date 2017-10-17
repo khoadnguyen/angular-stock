@@ -14,7 +14,7 @@ export class LoginService {
   }
 
   doRegister(user){
-    return this.http.post(`${this.url}/app-users/post`, user)
+    return this.http.post(`${this.url}/app-users/`, user)
       .map( res => res.json())
   }
 

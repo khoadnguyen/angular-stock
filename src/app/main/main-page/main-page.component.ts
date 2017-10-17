@@ -7,20 +7,6 @@ import {StockService} from '../../services/stock.service';
   styleUrls: ['./main-page.component.css']
 })
 export class MainPageComponent implements OnInit, OnChanges {
-  single = [
-    {
-      'name': 'GOOGL',
-      'value': 8940000
-    },
-    {
-      'name': 'AAPL',
-      'value': 5000000
-    },
-    {
-      'name': 'AMAZ',
-      'value': 7200000
-    }
-  ];
   multi = [
     {
       'name': 'GOOGL',
@@ -66,7 +52,6 @@ export class MainPageComponent implements OnInit, OnChanges {
   stocksObject = {};
   stocksArray = [ 'GOOG', 'AAPL', 'AMZN' ];
   opened: boolean;
-  fullname: string;
 
   // NGX View
   Lineview: any[];

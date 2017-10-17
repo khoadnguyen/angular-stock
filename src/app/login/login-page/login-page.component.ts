@@ -3,6 +3,8 @@ import {Router} from '@angular/router'
 
 import {LoginService} from '../login.service';
 import {AlertService} from '../../alert.service';
+import {UserService} from '../../services/user.service';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-login-page',
@@ -12,11 +14,19 @@ import {AlertService} from '../../alert.service';
 export class LoginPageComponent implements OnInit {
   username: string;
   password: string;
+  userData: any;
   isLogging = false;
+  subscription: Subscription;
 
   constructor(private login$: LoginService,
               private alert$: AlertService,
+              private user$: UserService,
               private router: Router) {
+    // this.subscription = user$.UserAddStream.subscribe(
+    //   user => {
+    //     this.userData = user['userData'];
+    //     console.log(this.userData)
+    //   });
   }
 
   ngOnInit() {
@@ -37,6 +47,9 @@ export class LoginPageComponent implements OnInit {
         res => {
           this.isLogging = true;
           // redirect to main module
+          // console.log('Response', res)
+          this.user$.addUserData(res);
+          // sessionStorage.setItem('userData', JSON.stringify(res.userData));
           this.router.navigate(['main']);
         },
         error => {
