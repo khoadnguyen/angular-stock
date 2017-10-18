@@ -24,11 +24,11 @@ export class LayoutComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.user$.UserStream.subscribe(
-    //   user => {
-    //   this.userData = user;
-    //   console.log('Getting User Data', user)
-    // })
+    this.user$.getName().subscribe(
+      res => {
+        this.fullname = res.firstName + ' ' + res.lastName;
+      }
+    )
   }
 
 }

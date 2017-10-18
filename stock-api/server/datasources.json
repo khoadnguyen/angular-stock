@@ -24,7 +24,9 @@
           "responsePath": "$['Time Series (Daily)']"
         },
         "functions": {
-          "data": ["stock"]
+          "data": [
+            "stock"
+          ]
         }
       }
     ]

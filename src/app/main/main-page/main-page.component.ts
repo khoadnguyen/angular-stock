@@ -1,5 +1,6 @@
 import {Component, OnInit, OnChanges, SimpleChanges} from '@angular/core';
 import {StockService} from '../../services/stock.service';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-main-page',
@@ -49,13 +50,12 @@ export class MainPageComponent implements OnInit, OnChanges {
     }
   ];
 
-  stocksObject = {};
-  stocksArray = [ 'GOOG', 'AAPL', 'AMZN' ];
+  stocksObject;
+  stocksArray = [];
   opened: boolean;
 
   // NGX View
-  Lineview: any[];
-  Barview: any[];
+  chartData: any[];
 
   // NGX Options
   showXAxis = true;
@@ -64,22 +64,28 @@ export class MainPageComponent implements OnInit, OnChanges {
   showLegend = false;
   showXAxisLabel = false;
   showYAxisLabel = false;
-  oneActive: boolean;
-  twoActive: boolean;
-  threeActive: boolean;
+  autoScale = true;
 
+  // NGX Color Scheme
   colorScheme = {
     domain: ['#A9CCE3', '#2471A3', '#FFFFFF', '#FFFFFF']
   };
 
   itemMapping: {[k: string]: string} = {'=0': 'No items', '=1': 'One item', 'other': '# items'};
 
-  constructor(private stock$: StockService) {}
+  constructor(private stock$: StockService, private user$: UserService) {
+    this.user$.getStocks().subscribe(
+      res => {
+        res.forEach( index => this.stocksArray.push(index))
+      }
+    )
+  }
 
   ngOnInit() {
     //this.stock$.getData('GM').subscribe( res => console.log('Single Stock:', res))
     this.stock$.getData(this.stocksArray).subscribe(
       res => {
+        console.log(res)
         for (var i = 0; i < res.length; i++) {
           let currentItem = res[i]['Time Series (Daily)'];
           let currentSymbol = res[i]['Meta Data']['2. Symbol'];
@@ -102,30 +108,36 @@ export class MainPageComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log('Changes', changes)
+    // console.log('Changes:', changes)
   }
 
   addStock(symbol: string): void {
     this.stocksArray.push(symbol);
+
     this.stock$.getData(symbol).subscribe(
       res => {
-      let currentItem = res['Time Series (Daily)'];
-      let currentItemArray = [];
-      for (let val in currentItem) {
-        if (currentItem.hasOwnProperty(val)) {
-          currentItem[val]['6. date'] = val;
-          currentItemArray.push(currentItem[val]);
-        }
+        const sym = res['Meta Data']['2. Symbol'];
+        this.user$.addStock(sym).subscribe( res => console.log(res))
       }
-      (this.stocksObject as any)[symbol] = currentItemArray;
-    },
-        error => console.log('Error:', error)
-    )
-    console.log('Updated Object: ')
-  }
+    //   res => {
+    //   let currentItem = res['Time Series (Daily)'];
+    //   let currentItemArray = [];
+    //   for (let val in currentItem) {
+    //     if (currentItem.hasOwnProperty(val)) {
+    //       currentItem[val]['6. date'] = val;
+    //       currentItemArray.push(currentItem[val]);
+    //     }
+    //   }
+    //   (this.stocksObject as any)[symbol] = currentItemArray;
+    // },
+    //     error => console.log('Error:', error)
+    // )
+    // console.log('Updated Object: ')
+    )}
 
-  removeStock(symbol: string): void {
-
+  onElementDeleted(element) {
+    let index = this.stocksArray.indexOf(element);
+    this.stocksArray.splice(index, 1);
   }
 
   onSelect(event) {

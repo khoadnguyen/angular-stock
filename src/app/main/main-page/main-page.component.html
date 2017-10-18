@@ -28,8 +28,8 @@
 		</div>
 		<div class="card-block">
 			<div class="card-chart card-text">
-				<ngx-charts-bar-vertical-2d
-						[view]="Barview"
+				<ngx-charts-area-chart
+						[view]="chartData"
 						[scheme]="colorScheme"
 						[results]="multi"
 						[gradient]="gradient"
@@ -38,17 +38,18 @@
 						[legend]="showLegend"
 						[showXAxisLabel]="showXAxisLabel"
 						[showYAxisLabel]="showYAxisLabel"
+						[autoScale]="autoScale"
 						(select)="onSelect($event)">
-				</ngx-charts-bar-vertical-2d>
+				</ngx-charts-area-chart>
 			</div>
 			<div class="card-text">
 
 				<clr-tabs>
-					<clr-tab>
-						<button clrTabLink>GOOGL</button>
-						<ng-template [(clrIfActive)]="oneActive">
+					<clr-tab *ngFor="let tab of stocksArray">
+						<button clrTabLink>{{tab.name}}</button>
+						<ng-template>
 							<clr-tab-content>
-								<clr-datagrid>
+								<clr-datagrid *ngIf='stocksObject'>
 									<clr-dg-column>Date</clr-dg-column>
 									<clr-dg-column>Open</clr-dg-column>
 									<clr-dg-column>High</clr-dg-column>
@@ -56,7 +57,7 @@
 									<clr-dg-column>Close</clr-dg-column>
 									<clr-dg-column>Volume</clr-dg-column>
 
-									<clr-dg-row *clrDgItems="let stock of stocksObject.GOOG">
+									<clr-dg-row *clrDgItems='let stock of stocksObject'>
 										<clr-dg-cell>{{stock["6. date"] | date}}</clr-dg-cell>
 										<clr-dg-cell>{{stock["1. open"] | number:'3.2' }}</clr-dg-cell>
 										<clr-dg-cell>{{stock["2. high"] | number:'3.2'}}</clr-dg-cell>
@@ -75,74 +76,13 @@
 						</ng-template>
 					</clr-tab>
 
-					<clr-tab>
-						<button clrTabLink>AAPL</button>
-						<ng-template [(clrIfActive)]="twoActive">
-							<clr-tab-content>
-								<clr-datagrid>
-									<clr-dg-column>Date</clr-dg-column>
-									<clr-dg-column>Open</clr-dg-column>
-									<clr-dg-column>High</clr-dg-column>
-									<clr-dg-column>Low</clr-dg-column>
-									<clr-dg-column>Close</clr-dg-column>
-									<clr-dg-column>Volume</clr-dg-column>
-
-									<clr-dg-row *clrDgItems="let stock of stocksObject.AAPL">
-										<clr-dg-cell>{{stock["6. date"] | date}}</clr-dg-cell>
-										<clr-dg-cell>{{stock["1. open"] | number:'3.2' }}</clr-dg-cell>
-										<clr-dg-cell>{{stock["2. high"] | number:'3.2' }}</clr-dg-cell>
-										<clr-dg-cell>{{stock["3. low"] | number:'3.2' }}</clr-dg-cell>
-										<clr-dg-cell>{{stock["4. close"] | number:'3.2' }}</clr-dg-cell>
-										<clr-dg-cell>{{stock["5. volume"]}}</clr-dg-cell>
-									</clr-dg-row>
-
-									<clr-dg-footer>
-										{{pagination2.firstItem + 1}} - {{pagination2.lastItem + 1}}
-										of {{pagination2.totalItems | i18nPlural: itemMapping}}
-										<clr-dg-pagination #pagination2 [clrDgPageSize]="5" [clrDgTotalItems]="5"></clr-dg-pagination>
-									</clr-dg-footer>
-								</clr-datagrid>
-							</clr-tab-content>
-						</ng-template>
-					</clr-tab>
-
-					<clr-tab>
-						<button clrTabLink>AMZN</button>
-						<ng-template [(clrIfActive)]="threeActive">
-							<clr-tab-content>
-								<clr-datagrid>
-									<clr-dg-column>Date</clr-dg-column>
-									<clr-dg-column>Open</clr-dg-column>
-									<clr-dg-column>High</clr-dg-column>
-									<clr-dg-column>Low</clr-dg-column>
-									<clr-dg-column>Close</clr-dg-column>
-									<clr-dg-column>Volume</clr-dg-column>
-
-									<clr-dg-row *clrDgItems="let stock of stocksObject.AMZN">
-										<clr-dg-cell>{{stock["6. date"] | date }}</clr-dg-cell>
-										<clr-dg-cell>{{stock["1. open"] | number:'3.2' }}</clr-dg-cell>
-										<clr-dg-cell>{{stock["2. high"] | number:'3.2' }}</clr-dg-cell>
-										<clr-dg-cell>{{stock["3. low"] | number:'3.2' }}</clr-dg-cell>
-										<clr-dg-cell>{{stock["4. close"] | number:'3.2' }}</clr-dg-cell>
-										<clr-dg-cell>{{stock["5. volume"]}}</clr-dg-cell>
-									</clr-dg-row>
-
-									<clr-dg-footer>
-										{{pagination3.firstItem + 1}} - {{pagination3.lastItem + 1}}
-										of {{pagination3.totalItems | i18nPlural: itemMapping}}
-										<clr-dg-pagination #pagination3 [clrDgPageSize]="5" [clrDgTotalItems]="5"></clr-dg-pagination>
-									</clr-dg-footer>
-								</clr-datagrid>
-							</clr-tab-content>
-						</ng-template>
-					</clr-tab>
 				</clr-tabs>
 
 			</div>
 		</div>
 	</div>
 
-	<app-stock-card [stockData]="stocksObject" [symbol]="stocks" *ngFor="let stocks of stocksArray"></app-stock-card>
+	<app-stock-card [stock]="stocksObject" [symbol]="stocks" *ngFor="let stocks of stocksArray" (elementDeleted)="onElementDeleted(element)"></app-stock-card>
 
 </section>
 

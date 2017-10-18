@@ -8,8 +8,7 @@
   },
   "properties": {
     "name": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "symbol": {
       "type": "string",
@@ -24,7 +23,32 @@
     "stock-days": {
       "type": "hasMany",
       "model": "stock-day",
-      "foreignKey": "symbol"
+      "foreignKey": "rel"
+    },
+    "chart-opens": {
+      "type": "hasMany",
+      "model": "chart-open",
+      "foreignKey": "rel"
+    },
+    "chart-closes": {
+      "type": "hasMany",
+      "model": "chart-close",
+      "foreignKey": "rel"
+    },
+    "chart-highs": {
+      "type": "hasMany",
+      "model": "chart-high",
+      "foreignKey": "rel"
+    },
+    "chart-lows": {
+      "type": "hasMany",
+      "model": "chart-low",
+      "foreignKey": "rel"
+    },
+    "chart-volumes": {
+      "type": "hasMany",
+      "model": "chart-volume",
+      "foreignKey": "rel"
     }
   },
   "acls": [],

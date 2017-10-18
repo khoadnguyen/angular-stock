@@ -1,5 +1,4 @@
-import {Component, OnInit, Input, OnChanges, SimpleChanges} from '@angular/core';
-import {CardData} from './stock-card.model';
+import {Component, OnInit, Input, Output, OnChanges, SimpleChanges, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-stock-card',
@@ -9,21 +8,32 @@ import {CardData} from './stock-card.model';
 export class StockCardComponent implements OnInit, OnChanges {
 
   @Input() symbol: string;
-  @Input() stockData: any;
+  @Input() stock: any;
+  @Input() card: any;
+  @Output() elementDeleted: EventEmitter<any> = new EventEmitter();
+  public stockData: any;
+  public chartData: any;
 
   constructor() {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    // console.log('Changes', changes)
-    // console.log(this.stocksObject)
-    console.log('This Card Stocks', changes.stockData.currentValue)
+    // .log('Stock Data:', this.stock);
+    console.log('Changes:', changes)
+    // if (this.stock && this.symbol) {
+    //   this.stockData = changes.stock.currentValue;
+    //   console.log('This Card Stocks', this.stockData)
+    // }
+
   }
   ngOnInit() {
-    // console.log(this.stocksObject)
-    // console.log('Symbol', this.symbol)
+    // console.log(this.stockObject);
     // console.log('Child Stocks', this.stocksObject)
 
+  }
+
+  deleteElement(element) {
+    this.elementDeleted.emit(element);
   }
 
 }

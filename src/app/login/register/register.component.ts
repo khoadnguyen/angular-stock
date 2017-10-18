@@ -13,9 +13,8 @@ import {AlertService} from '../../alert.service';
 export class RegisterComponent implements OnInit {
   @ViewChild("wizardmd") wizardMedium: Wizard;
   public mdOpen: boolean = true;
-  private user: object = {};
   private isLogging = false;
-  public vemail: string;
+  public vemail: any;
 
   public signup = {
     firstName: '',
@@ -38,7 +37,7 @@ export class RegisterComponent implements OnInit {
   }
 
   async doRegister() {
-    console.log('Attempting to register')
+    console.log('Attempting to register');
     if(this.vemail === this.signup.email) {
       this.signup.emailVerified = true;
       console.log(this.signup);
@@ -51,12 +50,12 @@ export class RegisterComponent implements OnInit {
           // redirect to main module
           console.log('Response', res)
           // sessionStorage.setItem('userData', JSON.stringify(res.userData));
-          // this.router.navigate(['main']);
+          this.router.navigate(['main']);
         },
         error => {
           this.isLogging = false;
           this.alert$.error(error);
-
+          this.router.navigate(['login']);
         }
       );
     } catch (error) {
