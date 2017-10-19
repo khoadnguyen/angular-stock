@@ -29,7 +29,7 @@
     "stocks": {
       "type": "hasMany",
       "model": "stock",
-      "foreignKey": ""
+      "foreignKey": "userId"
     }
   },
   "acls": [],

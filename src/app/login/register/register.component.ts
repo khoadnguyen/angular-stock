@@ -4,6 +4,7 @@ import {Wizard} from 'clarity-angular';
 
 import {LoginService} from '../login.service';
 import {AlertService} from '../../alert.service';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -27,6 +28,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(private login$: LoginService,
               private alert$: AlertService,
+              private user$: UserService,
               private router: Router) { }
 
   ngOnInit() {
@@ -40,7 +42,7 @@ export class RegisterComponent implements OnInit {
     console.log('Attempting to register');
     if(this.vemail === this.signup.email) {
       this.signup.emailVerified = true;
-      console.log(this.signup);
+      // console.log(this.signup);
     }
     try {
       this.isLogging = true;
@@ -48,8 +50,11 @@ export class RegisterComponent implements OnInit {
         res => {
           this.isLogging = true;
           // redirect to main module
-          console.log('Response', res)
-          // sessionStorage.setItem('userData', JSON.stringify(res.userData));
+          // console.log('Response', res)
+          const fname = res.firstName + ' ' + res.lastName;
+          this.user$.userName = fname;
+          this.user$.userId = res.id;
+          sessionStorage.setItem('userid', res.id);
           this.router.navigate(['main']);
         },
         error => {

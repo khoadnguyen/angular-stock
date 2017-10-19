@@ -47,7 +47,10 @@ export class LoginPageComponent implements OnInit {
         res => {
           this.isLogging = true;
           // redirect to main module
-          // console.log('Response', res.userId)
+          // console.log('Response', res)
+          const fname = res.userData.firstName + ' ' + res.userData.lastName;
+          this.user$.userName = fname;
+          this.user$.userId = res.userId;
           sessionStorage.setItem('userid', res.userId);
           this.router.navigate(['main']);
         },

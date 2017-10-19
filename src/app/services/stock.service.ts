@@ -21,10 +21,11 @@ export class StockService {
 
   getData(stocks: any): Observable<any> {
     if (typeof stocks === 'string') {
-      console.log("one stock")
+      console.log('one stock', stocks);
       return this.http.get(this.apiUrl + this.apiType + '&symbol=' + stocks + '&outputsize=' + this.apiSm + '&apikey=' + this.apiKey)
         .map(res => res.json());
     } else {
+      console.log('multiple stocks', stocks)
       return Observable.forkJoin(
         stocks.map(
           stock => this.http.get(this.apiUrl + this.apiType + '&symbol=' + stock + '&outputsize=' +

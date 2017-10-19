@@ -26,27 +26,27 @@
       "foreignKey": "rel"
     },
     "chart-opens": {
-      "type": "hasMany",
+      "type": "hasOne",
       "model": "chart-open",
       "foreignKey": "rel"
     },
     "chart-closes": {
-      "type": "hasMany",
+      "type": "hasOne",
       "model": "chart-close",
       "foreignKey": "rel"
     },
     "chart-highs": {
-      "type": "hasMany",
+      "type": "hasOne",
       "model": "chart-high",
       "foreignKey": "rel"
     },
     "chart-lows": {
-      "type": "hasMany",
+      "type": "hasOne",
       "model": "chart-low",
       "foreignKey": "rel"
     },
     "chart-volumes": {
-      "type": "hasMany",
+      "type": "hasOne",
       "model": "chart-volume",
       "foreignKey": "rel"
     }

@@ -21,24 +21,48 @@ export class UserService {
   // UserAddStream = this.userAdd.asObservable();
 
   constructor(@Inject('API_URL') private url: string, private http: Http) {
-    this.userId = sessionStorage.getItem('userid');
+    if(typeof sessionStorage.getItem('userid') == 'string') {
+        this.userId = sessionStorage.getItem('userid');
+    }
   }
 
   getName() {
+    // console.log('Get Name -');
     return this.http.get(`${this.url}/app-users/` + this.userId )
       .map(res => res.json())
   }
 
   getStocks() {
+    // console.log('Get Stocks -');
     return this.http.get(`${this.url}/app-users/` + this.userId + '/stocks/')
       .map(res => res.json())
   }
 
+  getStockDays(sym, limit){
+    // console.log('Get Stocks Days -');
+    return this.http.get(`${this.url}/stock-days` + '?filter[where][symbol]=' + sym + '&filter[limit]=' + limit)
+    .map(res => res.json())
+  }
+
   addStock(stock){
-    this.newStock.symbol = stock;
-    return this.http.post(`${this.url}/app-users/` + this.userId + '/stocks', this.newStock)
+    // console.log('Add Stocks -');
+    return this.http.post(`${this.url}/app-users/` + this.userId + '/stocks', stock)
       .map(res => res.json())
   }
+
+  updateUserStock(stock){
+    let newStock = JSON.parse(JSON.stringify(stock));
+    delete newStock.id;
+    delete newStock.userId;
+    return this.http.put(`${this.url}/app-users/` + stock.userId + '/stocks/' + stock.id, newStock)
+      .map(res => res.json())
+  }
+
+  deleteUserStock(stock) {
+    return this.http.delete(`${this.url}/app-users/` + stock.userId + '/stocks/' + stock.id, stock)
+      .map(res => res.json())
+  }
+
   addUserData(userData: any) {
     // this.user = userData;
     // this.userName = userData.firstName + ' ' + userData.lastName;

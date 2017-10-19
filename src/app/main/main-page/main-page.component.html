@@ -24,14 +24,14 @@
 	</div>
 	<div class="card card-performance">
 		<div class="card-header">
-			Portfolio Performance
+			Top Stocks
 		</div>
 		<div class="card-block">
 			<div class="card-chart card-text">
 				<ngx-charts-area-chart
 						[view]="chartData"
 						[scheme]="colorScheme"
-						[results]="multi"
+						[results]="multiData"
 						[gradient]="gradient"
 						[xAxis]="showXAxis"
 						[yAxis]="showYAxis"
@@ -43,13 +43,11 @@
 				</ngx-charts-area-chart>
 			</div>
 			<div class="card-text">
-
 				<clr-tabs>
 					<clr-tab *ngFor="let tab of stocksArray">
 						<button clrTabLink>{{tab.name}}</button>
-						<ng-template>
 							<clr-tab-content>
-								<clr-datagrid *ngIf='stocksObject'>
+								<clr-datagrid>
 									<clr-dg-column>Date</clr-dg-column>
 									<clr-dg-column>Open</clr-dg-column>
 									<clr-dg-column>High</clr-dg-column>
@@ -57,13 +55,13 @@
 									<clr-dg-column>Close</clr-dg-column>
 									<clr-dg-column>Volume</clr-dg-column>
 
-									<clr-dg-row *clrDgItems='let stock of stocksObject'>
-										<clr-dg-cell>{{stock["6. date"] | date}}</clr-dg-cell>
-										<clr-dg-cell>{{stock["1. open"] | number:'3.2' }}</clr-dg-cell>
-										<clr-dg-cell>{{stock["2. high"] | number:'3.2'}}</clr-dg-cell>
-										<clr-dg-cell>{{stock["3. low"] | number:'3.2'}}</clr-dg-cell>
-										<clr-dg-cell>{{stock["4. close"] | number:'3.2'}}</clr-dg-cell>
-										<clr-dg-cell>{{stock["5. volume"]}}</clr-dg-cell>
+									<clr-dg-row *clrDgItems='let data of tab.stockData'>
+										<clr-dg-cell>{{data.date | date}}</clr-dg-cell>
+										<clr-dg-cell>{{data.open | number:'2.2' }}</clr-dg-cell>
+										<clr-dg-cell>{{data.close | number:'2.2' }}</clr-dg-cell>
+										<clr-dg-cell>{{data.high | number:'2.2' }}</clr-dg-cell>
+										<clr-dg-cell>{{data.low | number:'2.2' }}</clr-dg-cell>
+										<clr-dg-cell>{{data.volume}}</clr-dg-cell>
 									</clr-dg-row>
 
 									<clr-dg-footer>
@@ -73,7 +71,6 @@
 									</clr-dg-footer>
 								</clr-datagrid>
 							</clr-tab-content>
-						</ng-template>
 					</clr-tab>
 
 				</clr-tabs>
@@ -82,18 +79,19 @@
 		</div>
 	</div>
 
-	<app-stock-card [stock]="stocksObject" [symbol]="stocks" *ngFor="let stocks of stocksArray" (elementDeleted)="onElementDeleted(element)"></app-stock-card>
+	<app-stock-card [stock]="stocksObject" [symbol]="stocks" *ngFor="let stocks of stocksArray" (elementDeleted)="onElementDeleted($event)" (stockPulled)="getChildStocks($event)"></app-stock-card>
 
 </section>
 
 <clr-modal [(clrModalOpen)]="opened" [clrModalStaticBackdrop]="true">
 	<h3 class="modal-title">Add a new Stock</h3>
 	<div class="modal-body">
-		<input type="text" id="addStock" #stockInput (input)="stockInput.value=$event.target.value.toUpperCase()" (keyup.enter)="addStock(stockInput.value); opened = false; stockInput.value =''" placeholder="Stock Ticker Symbol">
+		<input type="text" id="addStock" #stockTicker (input)="stockTicker.value=$event.target.value.toUpperCase()" placeholder="Stock Ticker Symbol">
+        <input type="text" id="addStockName" #stockName (input)="stockName.value" placeholder="Stock Name">
 	</div>
 	<div class="modal-footer">
 		<button type="button" class="btn btn-outline" (click)="opened = false">Cancel</button>
-		<button type="button" class="btn btn-primary" (click)="addStock(stockInput.value); opened = false; stockInput.value =''">Ok</button>
+		<button type="button" class="btn btn-primary" (click)="addStock({name: stockName.value, symbol: stockTicker.value}); opened = false; stockTicker.value =''; stockName.value ='' ">Ok</button>
 	</div>
 	<div class="modal-backdrop fade in" aria-hidden="true"></div>
 </clr-modal>

@@ -1,43 +1,64 @@
 <div class="card">
   <div class="card-header">
-    {{symbol.symbol}}
+    {{symbol.name}}
   </div>
   <div class="card-img">
-    <img src="http://via.placeholder.com/540x200/154360/ffffff/jpg?text=Chart">
+        <img *ngIf="!chartData" src="http://via.placeholder.com/540x200/154360/ffffff/jpg?text=Chart">
   </div>
   <div class="card-block">
+     <div class="card-text card-chart" *ngIf="multi">
+        <ngx-charts-area-chart-stacked
+          [view]="view"
+          [scheme]="colorScheme"
+          [results]="multi"
+          [gradient]="gradient"
+          [xAxis]="showXAxis"
+          [yAxis]="showYAxis"
+          [legend]="showLegend"
+          [timeline]="timeline"
+          [showXAxisLabel]="showXAxisLabel"
+          [showYAxisLabel]="showYAxisLabel"
+          [xAxisLabel]="xAxisLabel"
+          [yAxisLabel]="yAxisLabel"
+          (select)="onSelect($event)">
+        </ngx-charts-area-chart-stacked>
+    </div>
     <div class="card-title" *ngIf='symbol.symbol'>
       Current Stock Info for: {{symbol.symbol}}
     </div>
     <div class="card-text">
-      <table class="table table-vertical">
+      <table class="table table-vertical" *ngIf="latestData">
         <tbody>
         <tr>
+          <th>Last Updated</th>
+          <td>{{latestData.date | date}}</td>
+        </tr>
+        <tr>
           <th>Open</th>
-          <td></td>
+          <td>{{latestData.open | number:'2.2' }}</td>
         </tr>
         <tr>
           <th>Close</th>
-          <td></td>
+          <td>{{latestData.close | number:'2.2' }}</td>
         </tr>
         <tr>
           <th>High</th>
-          <td></td>
+          <td>{{latestData.high | number:'2.2' }}</td>
         </tr>
         <tr>
           <th>Low</th>
-          <td></td>
+          <td>{{latestData.low | number:'2.2' }}</td>
         </tr>
         <tr>
           <th>Volume</th>
-          <td></td>
+          <td>{{latestData.volume}}</td>
         </tr>
         </tbody>
       </table>
     </div>
   </div>
   <div class="card-footer">
-    <button class="btn btn-sm btn-link">
+    <button class="btn btn-sm btn-link" (click)="setFav(symbol)">
       <clr-icon shape="star" [class.is-solid]="symbol.isFave == true"></clr-icon>
       Favorite
     </button>
